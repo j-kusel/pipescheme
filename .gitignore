@@ -1,0 +1,4 @@
+*.DS_Store
+sessionSecret.js
+*.swp
+node_modules/*

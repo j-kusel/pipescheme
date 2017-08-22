@@ -1,0 +1,40 @@
+{
+  "name": "pipescheme",
+  "version": "1.0.0",
+  "description": "A webapp for documenting pipeline accidents across the U.S.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ultraturtle0/pipescheme.git"
+  },
+  "keywords": [
+    "oil",
+    "nodejs",
+    "javascript",
+    "express",
+    "mongoose",
+    "arcgis",
+    "leaflet"
+  ],
+  "author": "Jordan Kusel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ultraturtle0/pipescheme/issues"
+  },
+  "homepage": "https://github.com/ultraturtle0/pipescheme#readme",
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "body-parser": "^1.17.2",
+    "compression": "^1.7.0",
+    "ejs": "^2.5.7",
+    "express": "^4.15.4",
+    "express-session": "^1.15.5",
+    "mongoose": "^4.11.7",
+    "morgan": "^1.8.2",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0"
+  }
+}
