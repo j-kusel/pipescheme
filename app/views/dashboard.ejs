@@ -8,10 +8,13 @@
     <body>
         <div ng-app="app" ng-controller="PipeController">
             <div id="map" style="width: 600px; height: 400px"></div>
-            <h1>current accident:</h1>
-            <input ng-model="focus">
-            <p>{{ focus.state }}</p>
-
+            <h1>current accident: {{ currentAccident }}</h1>
+            <p>{{ focus.address }}</p>
+            <p>{{ focus.county }} County</p>
+            <p>{{ focus.city }}, {{ focus.state }} {{ focus.zip }}</p>
+            <p>injuries: {{ focus.injuries }}</p>
+            <p>fatalities: {{ focus.fatalities }}</p>
+            <p>{{ focus.datetime | date : "longDate" }}</p>
         </div>
         <script src="lib/leaflet/dist/leaflet.js"></script>
         <script src="js/app.js"></script>

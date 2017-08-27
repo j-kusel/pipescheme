@@ -5,6 +5,7 @@ angular.module('pipeScheme')
         
         var init = function(api) {
             $scope.map = L.map('map', {center: [35,-106], zoom: 10});
+            $scope.test = 'ok that works';
             L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png').addTo($scope.map);        
 
             $scope.currentAccident = api.data[0]._id;
@@ -28,9 +29,14 @@ angular.module('pipeScheme')
         };
 
         var markerClick = function(e) {
+            console.log('made it to the click callback');
+            $scope.test = 'well it changed';
             $scope.currentAccident = this.options.id;
             console.log($scope.currentAccident);
-            $scope.focus = $scope.data[$scope.currentAccident].LOCATION_STATE_ABBREVIATION; //focusLoader(this.options.id);
+            $scope.focus = focusLoader(this.options.id);
+            $scope.$apply(function () {
+                console.log('timeout called');
+            });
         };
 
         var focusLoader = function(id) {

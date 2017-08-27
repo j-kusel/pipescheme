@@ -15,5 +15,5 @@ exports.accidents = function(req, res, next) {
         }
         res.json(accidents);
     })
-    .limit(parseInt(req.params.limit));
+    .limit(10); // parseInt(req.params.limit));
 };
