@@ -6,7 +6,6 @@ const configMongoose = require('./config/mongoose');
 const app = configExpress();
 const db = configMongoose();
 
-
 app.listen(3000);
 module.exports = app;
 

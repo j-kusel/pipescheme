@@ -1,3 +1,4 @@
+const path = require('path');
 const config = require('./config');
 const express = require('express');
 const morgan = require('morgan');
@@ -20,7 +21,9 @@ module.exports = function() {
     require('../app/routes/pipeline.server.routes.js')(app);
     require('../app/routes/update.server.routes.js')(app);
 
-    app.use(express.static('./public'));
+    app.use('/', express.static('./public'));
+    app.use('/lib', express.static('./node_modules'));
+    app.use('/bower', express.static('./bower_components'));
 
     return app;
 };
