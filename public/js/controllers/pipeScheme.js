@@ -3,34 +3,44 @@
 angular.module('pipeScheme')
     .controller('PipeController', ['$scope', '$http', 'AccidentService', function($scope, $http, AccidentService) {
         
-        var init = function(data) {
-            $scope.data = {};
-            $scope.focus = {};
-            $scope.markers = {};
-            $scope.info = 'meh';
+        $scope.changeState = function (state) {
+            apiRequest(state).then(repopulate);
+        };
 
-            $scope.map = L.map('map', {center: [35,-106], zoom: 10});
-            L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png').addTo($scope.map);        
-
+        var repopulate = function(data) {
+            var markers = []
             $scope.currentAccident = data[0]._id;
             $scope.data[$scope.currentAccident] = data[0];
             data.forEach(function (element) {
                 $scope.data[element._id] = element;
-                $scope.markers[element._id] = L
-                    .marker([element.LOCATION_LATITUDE, element.LOCATION_LONGITUDE], {id: element._id})
-                    .addTo($scope.map)
+                var marker = L
+                    .marker([element.LOCATION_LATITUDE,
+                            element.LOCATION_LONGITUDE],
+                            {id: element._id})
                     .on('click', markerClick);
-            });    
-            $scope.info = $scope.data[$scope.currentAccident].NARRATIVE;
+                markers.push(marker);
+            });
+            $scope.markers.clearLayers();
+            $scope.markers = L
+                .layerGroup(markers)
+                .addTo($scope.map);
             $scope.focus = focusLoader($scope.currentAccident);
         };
 
+
+        var init = function(data) {
+            $scope.data = {};
+            $scope.state = 'TX';
+            $scope.focus = {};
+            $scope.markers = L.layerGroup();
+
+            $scope.map = L.map('map', {center: [35,-106], zoom: 10});
+            L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png').addTo($scope.map);        
+            repopulate(data);
+        };
+
         var apiRequest = function (state) {
-            AccidentService.query({state:"WI"})
-                .$promise
-                    .then(function (data) {
-                        init(data)
-                    });
+            return AccidentService.query({state:state}).$promise;
         };
 
         var markerClick = function(e) {
@@ -60,7 +70,7 @@ angular.module('pipeScheme')
             };
             return focus;
         };
-
-        apiRequest();
+        $scope.states = ['AL','AK','AZ','AR','CA','CO','CT','DE','FL','GA','HI','ID','IL','IN','IA','KS','KY','LA','ME','MD','MA','MI','MN','MS','MO','MT','NE','NV','NH','NJ','NM','NY','NC','ND','OH','OK','OR','PA','RI','SC','SD','TN','TX','UT','VT','VA','WA','WV','WI','WY'];
+        apiRequest("TX").then(function (data) {init(data);});
 }]);
 

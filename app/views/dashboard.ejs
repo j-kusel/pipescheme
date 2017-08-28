@@ -9,7 +9,11 @@
     <body>
         <div ng-app="app" ng-controller="PipeController">
             <div id="map" style="width: 600px; height: 400px"></div>
-            <h1>current accident: {{ currentAccident }}</h1>
+            <select ng-model="selected"
+                    ng-options="state for state in states"
+                    ng-change="changeState(selected)">
+            </select>
+            <h1>current accident: {{ currentAccident }} {{ selected }}</h1>
             <p>{{ focus.address }}</p>
             <p>{{ focus.county }} County</p>
             <p>{{ focus.city }}, {{ focus.state }} {{ focus.zip }}</p>
