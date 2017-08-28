@@ -8,29 +8,31 @@ angular.module('pipeScheme')
         };
 
         var repopulate = function(data) {
-            var markers = []
-            $scope.currentAccident = data[0]._id;
-            $scope.data[$scope.currentAccident] = data[0];
-            data.forEach(function (element) {
-                $scope.data[element._id] = element;
-                var marker = L
-                    .marker([element.LOCATION_LATITUDE,
+            var markers = [];
+            $scope.markers.clearLayers();           
+            if (data.length) {
+                $scope.currentAccident = data[0]._id;
+                $scope.data[$scope.currentAccident] = data[0];
+                data.forEach(function (element) {
+                    $scope.data[element._id] = element;
+                    var marker = L
+                        .marker([element.LOCATION_LATITUDE,
                             element.LOCATION_LONGITUDE],
                             {id: element._id})
-                    .on('click', markerClick);
-                markers.push(marker);
-            });
-            $scope.markers.clearLayers();
-            $scope.markers = L
-                .layerGroup(markers)
-                .addTo($scope.map);
-            $scope.focus = focusLoader($scope.currentAccident);
+                        .on('click', markerClick);
+                    markers.push(marker);
+                });
+                $scope.markers = L
+                    .layerGroup(markers)
+                    .addTo($scope.map);
+                $scope.focus = focusLoader($scope.currentAccident);
+            };
         };
-
 
         var init = function(data) {
             $scope.data = {};
             $scope.state = 'TX';
+            $scope.fatal = false;
             $scope.focus = {};
             $scope.markers = L.layerGroup();
 
@@ -40,17 +42,13 @@ angular.module('pipeScheme')
         };
 
         var apiRequest = function (state) {
-            return AccidentService.query({state:state}).$promise;
+            return AccidentService.query({state:state,fatal:$scope.fatal}).$promise;
         };
 
         var markerClick = function(e) {
-            console.log('made it to the click callback');
             $scope.currentAccident = this.options.id;
-            console.log($scope.currentAccident);
             $scope.focus = focusLoader(this.options.id);
-            $scope.$apply(function () {
-                console.log('timeout called');
-            });
+            $scope.$apply();
         };
 
         var focusLoader = function(id) {

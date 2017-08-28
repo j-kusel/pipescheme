@@ -13,6 +13,11 @@
                     ng-options="state for state in states"
                     ng-change="changeState(selected)">
             </select>
+            <input type="checkbox"
+                    ng-model="fatal"
+                    ng-change="changeState(selected)">
+                    fatal?
+            </input>
             <h1>current accident: {{ currentAccident }} {{ selected }}</h1>
             <p>{{ focus.address }}</p>
             <p>{{ focus.county }} County</p>

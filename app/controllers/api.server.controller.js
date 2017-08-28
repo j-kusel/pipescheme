@@ -9,7 +9,8 @@ exports.update = function(req, res, next) {
 
 exports.accidents = function(req, res, next) {
     var Accident = mongoose.model('Accident');
-    Accident.find({LOCATION_STATE_ABBREVIATION: req.params.state}, (err, accidents) => {
+    console.log('fatal param: ' + req.query.fatal);
+    Accident.find({LOCATION_STATE_ABBREVIATION: req.params.state, FATALITY_IND: (req.query.fatal == 'true')}, (err, accidents) => {
         if (err) {
             return next(err);
         }
