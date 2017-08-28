@@ -1,16 +1,20 @@
 
 
 angular.module('pipeScheme')
-    .controller('PipeController', ['$scope', '$http', function($scope, $http) {
+    .controller('PipeController', ['$scope', '$http', 'AccidentService', function($scope, $http, AccidentService) {
         
-        var init = function(api) {
+        var init = function(data) {
+            $scope.data = {};
+            $scope.focus = {};
+            $scope.markers = {};
+            $scope.info = 'meh';
+
             $scope.map = L.map('map', {center: [35,-106], zoom: 10});
-            $scope.test = 'ok that works';
             L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png').addTo($scope.map);        
 
-            $scope.currentAccident = api.data[0]._id;
-            $scope.data[$scope.currentAccident] = api.data[0];
-            api.data.forEach(function (element) {
+            $scope.currentAccident = data[0]._id;
+            $scope.data[$scope.currentAccident] = data[0];
+            data.forEach(function (element) {
                 $scope.data[element._id] = element;
                 $scope.markers[element._id] = L
                     .marker([element.LOCATION_LATITUDE, element.LOCATION_LONGITUDE], {id: element._id})
@@ -21,16 +25,16 @@ angular.module('pipeScheme')
             $scope.focus = focusLoader($scope.currentAccident);
         };
 
-        var apiRequest = function () {
-            $http.get('api/accidents/10/0')
-                .then(function (data) {
-                    init(data);
-                });
+        var apiRequest = function (state) {
+            AccidentService.query({state:"WI"})
+                .$promise
+                    .then(function (data) {
+                        init(data)
+                    });
         };
 
         var markerClick = function(e) {
             console.log('made it to the click callback');
-            $scope.test = 'well it changed';
             $scope.currentAccident = this.options.id;
             console.log($scope.currentAccident);
             $scope.focus = focusLoader(this.options.id);
@@ -45,7 +49,7 @@ angular.module('pipeScheme')
                 narrative: accident.NARRATIVE,
                 address: accident.LOCATION_STREET_ADDRESS,
                 city: accident.LOCATION_CITY_NAME,
-                county: accident.COUNTY_NAME,
+                county: accident.LOCATION_COUNTY_NAME,
                 state: accident.LOCATION_STATE_ABBREVIATION,
                 zip: accident.LOCATION_POSTAL_CODE,
                 fatal: accident.FATALITY_IND,
@@ -56,10 +60,6 @@ angular.module('pipeScheme')
             };
             return focus;
         };
-        $scope.data = {};
-        $scope.focus = {};
-        $scope.markers = {};
-        $scope.info = 'meh';
 
         apiRequest();
 }]);

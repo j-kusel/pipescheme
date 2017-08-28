@@ -9,11 +9,11 @@ exports.update = function(req, res, next) {
 
 exports.accidents = function(req, res, next) {
     var Accident = mongoose.model('Accident');
-    Accident.find((err, accidents) => {
+    Accident.find({LOCATION_STATE_ABBREVIATION: req.params.state}, (err, accidents) => {
         if (err) {
             return next(err);
         }
         res.json(accidents);
     })
-    .limit(10); // parseInt(req.params.limit));
+    .limit(100); // parseInt(req.params.limit));
 };

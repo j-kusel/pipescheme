@@ -1,2 +1,2 @@
 angular.module('app', ['pipeScheme']);
-angular.module('pipeScheme', []);
+angular.module('pipeScheme', ['ngResource']);
