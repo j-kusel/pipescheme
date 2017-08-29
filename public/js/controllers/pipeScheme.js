@@ -1,7 +1,7 @@
 
 
 angular.module('pipeScheme')
-    .controller('PipeController', ['$scope', '$http', 'AccidentService', function($scope, $http, AccidentService) {
+    .controller('PipeController', ['$scope', '$http', 'AccidentService', 'GeoService', function($scope, $http, AccidentService, GeoService) {
         
         $scope.changeState = function (state) {
             apiRequest(state).then(repopulate);
@@ -37,6 +37,15 @@ angular.module('pipeScheme')
             $scope.markers = L.layerGroup();
 
             $scope.map = L.map('map', {center: [35,-106], zoom: 10});
+            GeoService.getGeolocation().then(function (position) {
+                $scope.map.flyTo(new L.LatLng(position.coords.latitude, position.coords.longitude), 6, {
+                    animate: true,
+                    duration: .7,
+                    easeLinearity: .9
+                });
+            }, function (err) {
+                console.log(err);
+            });
             L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png').addTo($scope.map);        
             repopulate(data);
         };
@@ -66,6 +75,11 @@ angular.module('pipeScheme')
                 injuries: accident.INJURE,
                 datetime: accident.INCIDENT_IDENTIFIED_DATETIME
             };
+            $scope.map.flyTo(new L.LatLng(accident.LOCATION_LATITUDE, accident.LOCATION_LONGITUDE), 9, {
+                animate: true,
+                duration: .7,
+                easeLinearity: .9
+            });
             return focus;
         };
         $scope.states = ['AL','AK','AZ','AR','CA','CO','CT','DE','FL','GA','HI','ID','IL','IN','IA','KS','KY','LA','ME','MD','MA','MI','MN','MS','MO','MT','NE','NV','NH','NJ','NM','NY','NC','ND','OH','OK','OR','PA','RI','SC','SD','TN','TX','UT','VT','VA','WA','WV','WI','WY'];
