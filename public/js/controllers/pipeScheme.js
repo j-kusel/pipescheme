@@ -32,21 +32,33 @@ angular.module('pipeScheme')
         var init = function(data) {
             $scope.data = {};
             $scope.state = 'TX';
+            $scope.selected = 'TX';
             $scope.fatal = false;
             $scope.focus = {};
             $scope.markers = L.layerGroup();
 
             $scope.map = L.map('map', {center: [35,-106], zoom: 10});
+            L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png').addTo($scope.map);
             GeoService.getGeolocation().then(function (position) {
                 $scope.map.flyTo(new L.LatLng(position.coords.latitude, position.coords.longitude), 6, {
                     animate: true,
                     duration: .7,
                     easeLinearity: .9
                 });
+                GeoService.convertGeolocation(position.coords).then(
+                    function (data) {
+                        console.log('google:' + data.results);
+                        $scope.selected = data.results[0].address_components[5].short_name;
+                        apiRequest($scope.selected).then(repopulate);
+                    },
+                    function (err) {
+                        console.log(err);
+                    }
+                );
             }, function (err) {
                 console.log(err);
             });
-            L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png').addTo($scope.map);        
+                    
             repopulate(data);
         };
 

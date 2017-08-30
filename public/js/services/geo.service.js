@@ -22,13 +22,14 @@ angular.module('pipeScheme')
                 latlng: "@latlng",
                 key: "@key"
             });
-            var apiKey = require( // LOCAL API KEY HERE );
-            var latlng = coords[0].toString() + ',' + coords[1].toString();
-            return rPromise.query({latlng:latlng, key: apiKey}).$promise;
+            var apiKey = 'AIzaSyBj1SDb6bveF-hp9gFJMDrMVPsJdX_DiUg';
+            var latlng = coords.latitude.toString() + ',' + coords.longitude.toString();
+            console.log('coords: ' + latlng);
+            return rPromise.get({latlng:latlng, key: apiKey}).$promise;
         }
 
         return { 
-            getGeolocation: getGeolocation
+            getGeolocation: getGeolocation,
             convertGeolocation: convertGeolocation
         };
     }]);

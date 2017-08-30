@@ -4,3 +4,4 @@ sessionSecret.js
 node_modules/*
 bower_components/
 .sass-cache/
+googleAPI.js

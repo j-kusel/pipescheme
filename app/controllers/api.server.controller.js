@@ -1,4 +1,6 @@
 var csv = require('../../config/csv');         // get csv parser
+const googleAPI = require('../../config/env/googleAPI');    // get API key
+
 const mongoose = require('mongoose');
 
 exports.update = function(req, res, next) {
