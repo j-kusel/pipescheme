@@ -1,13 +1,80 @@
+@import url("https://fonts.googleapis.com/css?family=Archivo+Black|Lato");
 body {
-  background-color: orange; }
+  background-color: orange;
+  margin: 0px; }
 
-#controls .selector {
-  position: relative;
-  float: left;
-  padding: 3px; }
-#controls .checker {
-  position: relative;
-  float: left;
-  padding: 3px; }
+#headbar {
+  position: fixed;
+  height: 40px;
+  width: 100%;
+  margin: 0px;
+  z-index: 999;
+  background-color: #111111;
+  box-shadow: 10px 3px 15px black;
+  border-width: 1px;
+  border: #EEEEEE; }
+  #headbar #title {
+    position: relative;
+    float: left;
+    padding: 10px; }
+    #headbar #title h3 {
+      color: #EEEEEE;
+      font-size: 1.2em;
+      font-family: "Archivo Black", sans-serif;
+      margin: 0px; }
+  #headbar #options {
+    position: relative;
+    height: 100%;
+    float: right;
+    margin: 0px;
+    padding: 10px 20px 10px 10px; }
+    #headbar #options #headmenu {
+      position: relative;
+      float: right;
+      margin: 0px; }
+      #headbar #options #headmenu li {
+        font-family: "Lato", sans-serif;
+        padding: 0px 10px;
+        display: inline;
+        color: #EEEEEE; }
+
+.leaflet-tile-pane {
+  box-shadow: 10px 3px 15px black inset; }
+
+#main {
+  top: 25px; }
+  #main #map {
+    box-shadow: 10px 3px 15px black inset; }
+  #main #controls {
+    padding: 0px 0px 30px 0px; }
+    #main #controls .selector {
+      position: relative;
+      float: left;
+      padding: 3px; }
+    #main #controls .checker {
+      position: relative;
+      float: left;
+      padding: 3px; }
+  #main .info {
+    width: 50%;
+    margin: 0px;
+    padding: 15px 3px 3px 20px; }
+    #main .info li {
+      display: inline;
+      margin: 0px;
+      padding-right: 30px;
+      font-family: "Lato", sans-serif;
+      opacity: 0.7; }
+  #main #city {
+    margin: 0px;
+    font-family: "Archivo Black", sans-serif;
+    font-size: 5em;
+    padding: 0px 30px 0px 20px; }
+  #main #narrative {
+    margin: 0px;
+    padding: 3px 20px;
+    width: 40%;
+    font-family: "Lato", sans-serif;
+    font-size: 0.8em; }
 
 /*# sourceMappingURL=dashboard.css.map */

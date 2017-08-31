@@ -37,7 +37,14 @@ angular.module('pipeScheme')
             $scope.focus = {};
             $scope.markers = L.layerGroup();
 
-            $scope.map = L.map('map', {center: [35,-106], zoom: 10});
+            $scope.map = L.map('map', {
+                center: [35,-106],
+                zoom: 10,
+                scrollWheelZoom: false,
+                zoomControl: false
+            });
+
+            L.control.zoom({position: 'bottomleft'}).addTo($scope.map);
             L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png').addTo($scope.map);
             GeoService.getGeolocation().then(function (position) {
                 $scope.map.flyTo(new L.LatLng(position.coords.latitude, position.coords.longitude), 6, {
@@ -63,7 +70,9 @@ angular.module('pipeScheme')
         };
 
         var apiRequest = function (state) {
-            return AccidentService.query({state:state,fatal:$scope.fatal}).$promise;
+            var query = {state: state}; 
+            if ($scope.fatal) query.fatal = true;
+            return AccidentService.query(query).$promise;
         };
 
         var markerClick = function(e) {
@@ -85,7 +94,8 @@ angular.module('pipeScheme')
                 fatalities: accident.FATAL,
                 injure: accident.INJURY_IND,
                 injuries: accident.INJURE,
-                datetime: accident.INCIDENT_IDENTIFIED_DATETIME
+                datetime: accident.INCIDENT_IDENTIFIED_DATETIME,
+                report: accident.REPORT_NUMBER
             };
             $scope.map.flyTo(new L.LatLng(accident.LOCATION_LATITUDE, accident.LOCATION_LONGITUDE), 9, {
                 animate: true,
