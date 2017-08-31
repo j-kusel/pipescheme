@@ -22,6 +22,42 @@ body {
       font-size: 1.2em;
       font-family: "Archivo Black", sans-serif;
       margin: 0px; }
+  #headbar #controls {
+    position: relative;
+    float: left;
+    width: 50%;
+    padding: 10px 0px 12px 20px; }
+    #headbar #controls span {
+      position: relative;
+      float: left;
+      color: #EEEEEE;
+      font-family: "Lato", sans-serif;
+      padding: 0px 5px 0px 30px; }
+    #headbar #controls .select-css {
+      position: relative;
+      float: left;
+      width: 40px;
+      height: 100%;
+      padding-top: 2px; }
+      #headbar #controls .select-css .selector {
+        position: relative;
+        float: left;
+        width: 130%;
+        box-shadow: none;
+        background: transparent;
+        color: #EEEEEE;
+        font-family: "Lato", sans-serif;
+        -webkit-appearance: none;
+        -apple-appearance: none;
+        -moz-appearance: none;
+        border: 1px solid #EEEEEE;
+        border-radius: 2px;
+        padding: 0px;
+        margin: 0px; }
+    #headbar #controls .checker {
+      position: relative;
+      float: left;
+      padding-top: 6px; }
   #headbar #options {
     position: relative;
     height: 100%;
@@ -45,18 +81,8 @@ body {
   top: 25px; }
   #main #map {
     box-shadow: 10px 3px 15px black inset; }
-  #main #controls {
-    padding: 0px 0px 30px 0px; }
-    #main #controls .selector {
-      position: relative;
-      float: left;
-      padding: 3px; }
-    #main #controls .checker {
-      position: relative;
-      float: left;
-      padding: 3px; }
   #main .info {
-    width: 50%;
+    width: 100%;
     margin: 0px;
     padding: 15px 3px 3px 20px; }
     #main .info li {

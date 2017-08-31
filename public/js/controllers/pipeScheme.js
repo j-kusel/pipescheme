@@ -95,7 +95,15 @@ angular.module('pipeScheme')
                 injure: accident.INJURY_IND,
                 injuries: accident.INJURE,
                 datetime: accident.INCIDENT_IDENTIFIED_DATETIME,
-                report: accident.REPORT_NUMBER
+                report: accident.REPORT_NUMBER,
+                operator: accident.NAME,
+                operatorType: accident.OPERATOR_TYPE,
+                investigation: accident.INVESTIGATION_STATUS_DETAILS,
+                cause: accident.CAUSE,
+                causeDetails: accident.CAUSE_DETAILS,
+                work: accident.WORK_PERFORMED,
+                rootCause: accident.ROOT_CAUSE,
+                rootCauseOther: accident.ROOT_CAUSE_OTHER
             };
             $scope.map.flyTo(new L.LatLng(accident.LOCATION_LATITUDE, accident.LOCATION_LONGITUDE), 9, {
                 animate: true,
