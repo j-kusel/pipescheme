@@ -13,7 +13,7 @@
                 <h3>PIPESCHEME</h3>
             </div>
             <div id="controls">
-                <span>state:</span>
+                <span class="span-sel">state:</span>
                 <div class="select-css">
                     <select class="selector"
                             ng-model="selected"
@@ -21,12 +21,12 @@
                             ng-change="changeState(selected)">
                     </select>
                 </div>
-                <span>fatal?</span>
                 <input type="checkbox"
-                        class="checker"
-                        ng-model="fatal"
-                        ng-change="changeState(selected)">
-                </input>
+                    id="checker"
+                    ng-model="fatal"
+                    ng-change="changeState(selected)" />
+                <label for="checker"><span></span></label>
+                <span class="span-check">fatal?</span>
             </div>
             <div id="options">
                 <ul id="headmenu">
@@ -62,6 +62,7 @@
             <p>work?: {{ focus.work }}</p>
             <p>root cause?: {{ focus.rootCause }}</p>
             <p>root cause other?: {{ focus.rootCauseOther }}</p>
+            <p>{{ focus.year }}</p>
 
 
 

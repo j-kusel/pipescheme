@@ -103,7 +103,8 @@ angular.module('pipeScheme')
                 causeDetails: accident.CAUSE_DETAILS,
                 work: accident.WORK_PERFORMED,
                 rootCause: accident.ROOT_CAUSE,
-                rootCauseOther: accident.ROOT_CAUSE_OTHER
+                rootCauseOther: accident.ROOT_CAUSE_OTHER,
+                year: accident.IYEAR
             };
             $scope.map.flyTo(new L.LatLng(accident.LOCATION_LATITUDE, accident.LOCATION_LONGITUDE), 9, {
                 animate: true,

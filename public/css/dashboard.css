@@ -10,7 +10,7 @@ body {
   margin: 0px;
   z-index: 999;
   background-color: #111111;
-  box-shadow: 10px 3px 15px black;
+  box-shadow: 10px 3px 20px black;
   border-width: 1px;
   border: #EEEEEE; }
   #headbar #title {
@@ -26,13 +26,13 @@ body {
     position: relative;
     float: left;
     width: 50%;
-    padding: 10px 0px 12px 20px; }
+    padding: 9px 0px 13px 20px; }
     #headbar #controls span {
       position: relative;
       float: left;
       color: #EEEEEE;
       font-family: "Lato", sans-serif;
-      padding: 0px 5px 0px 30px; }
+      padding: 1px 5px 0px 30px; }
     #headbar #controls .select-css {
       position: relative;
       float: left;
@@ -43,6 +43,7 @@ body {
         position: relative;
         float: left;
         width: 130%;
+        height: 20px;
         box-shadow: none;
         background: transparent;
         color: #EEEEEE;
@@ -54,10 +55,21 @@ body {
         border-radius: 2px;
         padding: 0px;
         margin: 0px; }
-    #headbar #controls .checker {
-      position: relative;
-      float: left;
-      padding-top: 6px; }
+    #headbar #controls #checker {
+      display: none;
+      padding-top: 2px; }
+      #headbar #controls #checker + label span {
+        cursor: pointer;
+        display: inline-block;
+        padding: 0px;
+        margin: 2px 2px 2px 30px;
+        width: 20px;
+        height: 20px;
+        background: url(img/checkboxes.png) left top no-repeat; }
+      #headbar #controls #checker:checked + label span {
+        background: url(img/checkboxes.png) -20px top no-repeat; }
+    #headbar #controls span.span-check {
+      padding-left: 3px; }
   #headbar #options {
     position: relative;
     height: 100%;
