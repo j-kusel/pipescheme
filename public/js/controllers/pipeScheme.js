@@ -8,6 +8,7 @@ angular.module('pipeScheme')
         };
 
         var repopulate = function(data) {
+            console.log('repopulate:' + data);
             var markers = [];
             $scope.markers.clearLayers();           
             if (data.length) {
@@ -34,6 +35,7 @@ angular.module('pipeScheme')
             $scope.state = 'TX';
             $scope.selected = 'TX';
             $scope.fatal = false;
+            $scope.year = 'all';
             $scope.focus = {};
             $scope.markers = L.layerGroup();
 
@@ -72,6 +74,7 @@ angular.module('pipeScheme')
         var apiRequest = function (state) {
             var query = {state: state}; 
             if ($scope.fatal) query.fatal = true;
+            if ($scope.year !== 'all') query.year = $scope.year;
             return AccidentService.query(query).$promise;
         };
 
@@ -114,6 +117,7 @@ angular.module('pipeScheme')
             return focus;
         };
         $scope.states = ['AL','AK','AZ','AR','CA','CO','CT','DE','FL','GA','HI','ID','IL','IN','IA','KS','KY','LA','ME','MD','MA','MI','MN','MS','MO','MT','NE','NV','NH','NJ','NM','NY','NC','ND','OH','OK','OR','PA','RI','SC','SD','TN','TX','UT','VT','VA','WA','WV','WI','WY'];
+        $scope.years = ['all','2011','2012','2013','2014','2015','2016','2017'];
         apiRequest("TX").then(function (data) {init(data);});
 }]);
 

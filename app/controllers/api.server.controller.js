@@ -12,10 +12,13 @@ exports.update = function(req, res, next) {
 exports.accidents = function(req, res, next) {
     var Accident = mongoose.model('Accident');
     console.log('fatal param: ' + req.query.fatal);
-    query = {
+    console.log('year param: ' + req.query.year);
+    var query = {
         LOCATION_STATE_ABBREVIATION: req.params.state
     };
     if (req.query.fatal == 'true') query.FATALITY_IND = true;
+    if (req.query.year) query.IYEAR = req.query.year;
+
     Accident.find(query, (err, accidents) => {
         if (err) {
             return next(err);

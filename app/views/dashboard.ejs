@@ -27,6 +27,15 @@
                     ng-change="changeState(selected)" />
                 <label for="checker"><span></span></label>
                 <span class="span-check">fatal?</span>
+                <span class="span-sel">year:</span>
+                <div class="select-css">
+                    <select class="selector"
+                            ng-model="year"
+                            ng-options="year for year in years"
+                            ng-change="changeState(selected)">
+                    </select>
+                </div>
+
             </div>
             <div id="options">
                 <ul id="headmenu">
