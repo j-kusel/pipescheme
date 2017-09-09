@@ -38,17 +38,22 @@
 
             </div>
             <div id="options">
-                <p>hello {{ user.firstName }}</p>
                 <ul id="headmenu">
+                    <div ng-if="user.firstName">
+                        <li>welcome back {{ user.firstName }}!</li>
+                    </div>
                     <li><a href="/signup">signup</a></li>
                     <li style="opacity: .2;">|</li>
-                    <li><a href="/signin">signin</a></li>
+                    <li><button ng-click='toggleSignin()'>signin</button></li>
                     <li style="opacity: .2;">|</li>
                     <li><a href="/logout">logout</a></li>
                     <li style="opacity: .2;">|</li>
                     <li>about</li>
                 </ul>
             </div>
+        </div>
+        <div>
+            <ps-signin flashmsg="<%= flashmsg %>" show="signinShow"></ps-signin>
         </div>
         <div id="main">
             <div id="map" style="width: 100%; height: 350px; z-index: 1;"></div>
@@ -76,9 +81,6 @@
             <p>root cause other?: {{ focus.rootCauseOther }}</p>
             <p>{{ focus.year }}</p>
 
-
-
-
         </div>
 
         <!-- Leaflet.js -->
@@ -94,5 +96,8 @@
         <!-- controllers -->
         <script src="js/controllers/pipeScheme.js"></script>
         <!-- <script src="js/controllers/users.client.controller.js"></script> -->
+
+        <!-- directives -->
+        <script src="js/directives/modalSignup.client.directive.js"></script>
     </body>
 </html>
