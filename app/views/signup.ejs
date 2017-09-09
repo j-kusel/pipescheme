@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>signup</title>
+    </head>
+    <body>
+        <div id="signup" ng-controller="UserController">
+            <form action="/signup" method="post">
+                <div>
+                    <label>first name:</label>
+                    <input type="text" name="firstName" />
+                </div>
+                <div>
+                    <label>last name:</label>
+                    <input type="text" name="lastName" />
+                <div>
+                    <label>email:</label>
+                    <input type="text" name="email" />
+                </div>
+                <div>
+                    <label>password:</label>
+                    <input type="password" name="password" />
+                </div>
+                <div>
+                    <input type="submit" value="Signup" />
+                </div>
+            </form>
+        </div>
+    </body>
+</html>
