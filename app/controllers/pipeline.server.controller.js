@@ -5,7 +5,8 @@ exports.dashboard = function(req, res, next) {
 
     res.render('dashboard', {
         flashmsg: req.flash('error') || 'default',
-        user: req.user || {}
+        user: req.user || {},
+        formtype: 'none'
     });
 }
 

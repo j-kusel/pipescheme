@@ -41,19 +41,25 @@
                 <ul id="headmenu">
                     <div ng-if="user.firstName">
                         <li>welcome back {{ user.firstName }}!</li>
+                        <li style="opacity: .2;">|</li>
+                        <li><button onclick="window.location.href='/logout'">logout</button></li>
                     </div>
-                    <li><a href="/signup">signup</a></li>
+                    <div ng-if="!user.firstName">
+                        <li><button ng-click='toggleSignin()'>signin</button></li>
+                        <li style="opacity: .2;">|</li>
+                        <li><button ng-click='toggleSignup()'>signup</button></li>
+                    </div>
                     <li style="opacity: .2;">|</li>
-                    <li><button ng-click='toggleSignin()'>signin</button></li>
-                    <li style="opacity: .2;">|</li>
-                    <li><a href="/logout">logout</a></li>
-                    <li style="opacity: .2;">|</li>
-                    <li>about</li>
+                    <li><button ng-click='toggleAbout()'>about</button></li>
                 </ul>
             </div>
         </div>
         <div>
-            <ps-signin flashmsg="<%= flashmsg %>" show="signinShow"></ps-signin>
+            <ps-modal flashmsg="<%= flashmsg %>" show="modalShow">
+                <ps-signin ng-if="formtype==='signin'"></ps-signin>
+                <ps-signup ng-if="formtype==='signup'"></ps-signup>
+                <div ng-if="formtype==='about'" ng-include="'templates/about.html'"></div>
+            </ps-modal>
         </div>
         <div id="main">
             <div id="map" style="width: 100%; height: 350px; z-index: 1;"></div>
@@ -98,6 +104,8 @@
         <!-- <script src="js/controllers/users.client.controller.js"></script> -->
 
         <!-- directives -->
-        <script src="js/directives/modalSignup.client.directive.js"></script>
+        <script src="js/directives/psModal.client.directive.js"></script>
+        <script src="js/directives/loginForms.client.directive.js"></script>
+
     </body>
 </html>
