@@ -37,22 +37,22 @@
                 </div>
 
             </div>
-            <div id="options">
-                <ul id="headmenu">
-                    <div ng-if="user.firstName">
-                        <li>welcome back {{ user.firstName }}!</li>
-                        <li style="opacity: .2;">|</li>
-                        <li><button onclick="window.location.href='/logout'">logout</button></li>
-                    </div>
-                    <div ng-if="!user.firstName">
-                        <li><button ng-click='toggleSignin()'>signin</button></li>
-                        <li style="opacity: .2;">|</li>
-                        <li><button ng-click='toggleSignup()'>signup</button></li>
-                    </div>
+            <ul id="headmenu">
+                <div ng-if="user.firstName">
+                    <li>welcome back {{ user.firstName }}!</li>
                     <li style="opacity: .2;">|</li>
-                    <li><button ng-click='toggleAbout()'>about</button></li>
-                </ul>
-            </div>
+                    <li onclick="window.location.href='/logout'" style="cursor: pointer;">logout</li>
+                </div>
+                <div ng-if="!user.firstName">
+                    <li ng-click='toggleSignin()' style="cursor: pointer;">signin</li>
+                    <li style="opacity: .2;">|</li>
+                    <li ng-click='toggleSignup()' style="cursor: pointer;">signup</li>
+                </div>
+                <div>
+                    <li style="opacity: .2;">|</li>
+                    <li ng-click='toggleAbout()' style="cursor: pointer;">about</li>
+                </div>
+            </ul>
         </div>
         <div>
             <ps-modal flashmsg="<%= flashmsg %>" show="modalShow">
@@ -101,7 +101,6 @@
 
         <!-- controllers -->
         <script src="js/controllers/pipeScheme.js"></script>
-        <!-- <script src="js/controllers/users.client.controller.js"></script> -->
 
         <!-- directives -->
         <script src="js/directives/psModal.client.directive.js"></script>

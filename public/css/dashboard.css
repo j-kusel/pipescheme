@@ -70,20 +70,17 @@ body {
         background: url(img/checkboxes.png) -20px top no-repeat; }
     #headbar #controls span.span-check {
       padding-left: 3px; }
-  #headbar #options {
+  #headbar #headmenu {
     position: relative;
-    height: 100%;
+    padding: 10px 10px 9px 10px;
     float: right;
-    margin: 0px;
-    padding: 10px 20px 10px 10px; }
-    #headbar #options #headmenu {
-      position: relative;
-      float: right;
-      margin: 0px; }
-      #headbar #options #headmenu li {
+    margin: 0px 10px; }
+    #headbar #headmenu div {
+      display: inline-block; }
+      #headbar #headmenu div li {
         font-family: "Lato", sans-serif;
         padding: 0px 10px;
-        display: inline;
+        display: inline-block;
         color: #EEEEEE; }
 
 .leaflet-tile-pane {
