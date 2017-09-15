@@ -8,7 +8,7 @@ body {
   height: 40px;
   width: 100%;
   margin: 0px;
-  z-index: 999;
+  z-index: 40;
   background-color: #111111;
   box-shadow: 10px 3px 20px black;
   border-width: 1px;
@@ -112,14 +112,59 @@ body {
     font-family: "Lato", sans-serif;
     font-size: 0.8em; }
 
+#overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: #111111;
+  opacity: 0.5;
+  z-index: 50; }
+
 #modal {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  height: 10em;
   margin: 50px;
   background-color: #111111;
-  z-index: 20; }
+  z-index: 51; }
+  #modal #modalClose {
+    position: relative;
+    float: right;
+    padding: 6px 7px;
+    margin: 0px;
+    cursor: pointer;
+    color: #EEEEEE; }
+  #modal div p {
+    color: #EEEEEE;
+    padding: 10px 40px; }
+
+form input[type="text"], form input[type="password"] {
+  margin: 5px 50px;
+  float: right;
+  text-align: right;
+  font-family: "Lato", sans-serif;
+  appearance: none;
+  -webkit-appearance: none;
+  -apple-appearance: none;
+  -moz-appearance: none;
+  color: #EEEEEE;
+  background-color: transparent;
+  border-style: none;
+  border-bottom: solid 2px #EEEEEE; }
+form input[type="submit"] {
+  appearance: none;
+  -webkit-appearance: none;
+  -apple-appearance: none;
+  -moz-appearance: none;
+  position: relative;
+  float: right;
+  margin: 5px 56px 30px 0px;
+  background-color: transparent;
+  color: #EEEEEE;
+  font-family: "Lato", sans-serif;
+  border-radius: 2px;
+  border-width: 1px;
+  border-color: #EEEEEE; }
 
 /*# sourceMappingURL=dashboard.css.map */

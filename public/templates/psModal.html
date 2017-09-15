@@ -1,5 +1,7 @@
+<div id="overlay" ng-show='show'></div>
 <div id="modal" ng-show='show'>
-    <p>flash: {{ flashmsg }}</p>
-    <p id="modal" ng-click='hideModal()'>X</p>
-    <div id="modalContent" ng-transclude>
+    <!-- <p>flash: {{ flashmsg }}</p> -->
+
+    <p id="modalClose" ng-click='hideModal()'>X</p>
+    <div ng-transclude>
 </div>
