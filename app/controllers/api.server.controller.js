@@ -9,6 +9,19 @@ exports.update = function(req, res, next) {
     res.render('index');
 };
 
+exports.uploadPhoto = function(req, res, next) {
+    var Photo = mongoose.model('Photo');
+    console.log('post: ' + req.body);
+    var newPhoto = new Photo({
+        location: req.body.location,
+        filename: req.body.filename
+    });
+    newPhoto.save(function (err) {
+       console.log('error saving: ' + err);
+    });
+    return res.redirect('/');
+}
+
 exports.accidents = function(req, res, next) {
     var Accident = mongoose.model('Accident');
     console.log('fatal param: ' + req.query.fatal);
@@ -26,4 +39,26 @@ exports.accidents = function(req, res, next) {
         res.json(accidents);
     })
     .limit(100); // parseInt(req.params.limit));
+};
+
+exports.photos = function(req, res, next) {
+    console.log('photo API hit');
+    var Photo = mongoose.model('Photo');
+/*    if (!req.body) {
+        console.log('didnt find photo');
+        return res.redirect('/');
+    }
+*/
+    var query = {};
+    if (req.query.location) query.location = req.query.location;
+    if (req.query.owner) query.owner = req.query.owner;
+    console.log('query: ' + query);
+    Photo
+        .find(query, (err, photos) => {
+            if (err) {
+                console.log('so its a query error...');
+                return next(err);
+            }
+            res.json(photos);
+        });
 };

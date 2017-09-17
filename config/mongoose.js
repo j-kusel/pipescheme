@@ -7,5 +7,6 @@ module.exports = function() {
     const db = mongoose.connect(config.db);
     require('../app/models/accident.server.model');
     require('../app/models/user.server.model');
+    require('../app/models/photo.server.model');
     return db;
 };

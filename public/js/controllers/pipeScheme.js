@@ -1,7 +1,7 @@
 
 
 angular.module('pipeScheme')
-    .controller('PipeController', ['$scope', '$http', 'AccidentService', 'GeoService', function($scope, $http, AccidentService, GeoService) {
+    .controller('PipeController', ['$scope', '$http', 'AccidentService', 'PhotoService', 'GeoService', function($scope, $http, AccidentService, PhotoService, GeoService) {
         
         $scope.changeState = function (state) {
             apiRequest(state).then(repopulate);
@@ -79,15 +79,26 @@ angular.module('pipeScheme')
             return AccidentService.query(query).$promise;
         };
 
+        var photoRequest = function (accident) {
+            var query = {location: accident};
+            return PhotoService.query(query).$promise;
+        }
+
         var markerClick = function(e) {
             $scope.currentAccident = this.options.id;
             $scope.focus = focusLoader(this.options.id);
+            photoRequest($scope.focus.id)
+                .then(function (photos) {
+                    console.log("photoRequest: " + photos);
+                    $scope.photos = photos;
+                });
             $scope.$apply();
         };
 
         var focusLoader = function(id) {
             var accident = $scope.data[id];
             var focus = {
+                id: accident._id,
                 narrative: accident.NARRATIVE,
                 address: accident.LOCATION_STREET_ADDRESS,
                 city: accident.LOCATION_CITY_NAME,

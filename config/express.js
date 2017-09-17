@@ -34,6 +34,7 @@ module.exports = function() {
     require('../app/routes/pipeline.server.routes.js')(app);
     require('../app/routes/update.server.routes.js')(app);
     require('../app/routes/users.server.routes.js')(app);
+    require('../app/routes/photo.server.routes.js')(app);
 
     app.use('/', express.static('./public'));
     app.use('/lib', express.static('./node_modules'));
