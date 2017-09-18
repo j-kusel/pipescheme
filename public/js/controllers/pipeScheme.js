@@ -89,7 +89,6 @@ angular.module('pipeScheme')
             $scope.focus = focusLoader(this.options.id);
             photoRequest($scope.focus.id)
                 .then(function (photos) {
-                    console.log("photoRequest: " + photos);
                     $scope.photos = photos;
                 });
             $scope.$apply();

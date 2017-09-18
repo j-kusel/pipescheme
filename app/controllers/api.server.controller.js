@@ -1,7 +1,11 @@
 var csv = require('../../config/csv');         // get csv parser
+var fs = require('fs');
 const googleAPI = require('../../config/env/googleAPI');    // get API key
+const config = require('../../config/config.js');
+const uploader = require('../../config/multer.js')(config.fileUploads); 
 
 const mongoose = require('mongoose');
+        
 
 exports.update = function(req, res, next) {
     csv.csvStream('public/csv/jan2010-present.csv', 'Accident');
@@ -10,8 +14,23 @@ exports.update = function(req, res, next) {
 };
 
 exports.uploadPhoto = function(req, res, next) {
+    console.log('made it to uploader');
+    uploader(req, res, function (err) {
+        if (err) {
+            return res.end('error uploading file: ' + err);
+        } else {
+            console.log('file uploaded. files: ');
+            req.body.filename = req.file.path;
+            
+            next();
+        }
+    });
+};
+
+exports.savePhoto = function(req, res, next) {
+    console.log('made it to saver');
     var Photo = mongoose.model('Photo');
-    console.log('post: ' + req.body);
+    console.log('post: ' + req.body.location);
     var newPhoto = new Photo({
         location: req.body.location,
         filename: req.body.filename
@@ -24,8 +43,6 @@ exports.uploadPhoto = function(req, res, next) {
 
 exports.accidents = function(req, res, next) {
     var Accident = mongoose.model('Accident');
-    console.log('fatal param: ' + req.query.fatal);
-    console.log('year param: ' + req.query.year);
     var query = {
         LOCATION_STATE_ABBREVIATION: req.params.state
     };
@@ -42,7 +59,6 @@ exports.accidents = function(req, res, next) {
 };
 
 exports.photos = function(req, res, next) {
-    console.log('photo API hit');
     var Photo = mongoose.model('Photo');
 /*    if (!req.body) {
         console.log('didnt find photo');
@@ -51,12 +67,10 @@ exports.photos = function(req, res, next) {
 */
     var query = {};
     if (req.query.location) query.location = req.query.location;
-    if (req.query.owner) query.owner = req.query.owner;
-    console.log('query: ' + query);
+    if (req.query.owner) query._id = req.query.owner;
     Photo
         .find(query, (err, photos) => {
             if (err) {
-                console.log('so its a query error...');
                 return next(err);
             }
             res.json(photos);

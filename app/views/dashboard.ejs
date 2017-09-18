@@ -87,9 +87,14 @@
             <p>root cause other?: {{ focus.rootCauseOther }}</p>
             <p>{{ focus.year }}</p>
 
-            <form action="/api/photos" method="post">
-                <input type="text" name="filename" />
+            <div id="gallery" ng-repeat="photo in photos">
+                <p>{{photo.filename}}</p>
+            </div>
+
+            <form action="/api/photos" enctype="multipart/form-data" method="post">
                 <input type="text" name="location" value="{{focus.id}}" readonly />
+                <input type="file" name="userPhoto" />
+               
                 <input type="submit" value="newPhoto" />
             </form>
 
