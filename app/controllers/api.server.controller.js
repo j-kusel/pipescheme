@@ -20,7 +20,8 @@ exports.uploadPhoto = function(req, res, next) {
             return res.end('error uploading file: ' + err);
         } else {
             console.log('file uploaded. files: ');
-            req.body.filename = req.file.path;
+            req.body.filename = '/' + req.file.path.split('/').slice(-3).join('/');
+            console.log(req.body.filename);
             
             next();
         }

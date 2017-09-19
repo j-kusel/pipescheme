@@ -108,6 +108,7 @@ body
   #map
     box-shadow: 10px 3px 15px black inset
 
+
   .info
     width: 100%
     margin: 0px
@@ -129,7 +130,7 @@ body
   #narrative
     margin: 0px
     padding: 3px 20px
-    width: 40%
+    width: 90%
     font-family: 'Lato', sans-serif
     font-size: .8em
 
@@ -181,7 +182,7 @@ form
     border-style: none
     border-bottom: solid 2px #EEEEEE
 
-  input[type="submit"]
+  input[type="submit"], input[type="file"]
     
     appearance: none
     -webkit-appearance: none
@@ -198,3 +199,30 @@ form
     border-radius: 2px
     border-width: 1px
     border-color: #EEEEEE
+
+.details
+  position: relative
+  width: 40%
+  float: left
+
+#gallery
+  position: relative
+  float: right
+  width: 50%
+  height: 40%
+  margin: 1.5em
+  overflow-y: scroll
+
+  .thumbnail
+    display: inline
+    width: auto
+
+#upload
+  input
+    margin: 0px
+
+  #uploadButton
+    width: 200px
+    height: 100px
+    display: inline
+

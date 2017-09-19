@@ -141,6 +141,15 @@ angular.module('pipeScheme')
             $scope.formtype = 'about';
             $scope.modalShow = !$scope.modalShow;
         };
+        $scope.photoUpload = function () {
+            if (!$scope.user.firstName) {
+                $scope.flashmsg = "login before uploading a photo!";
+                $scope.formtype = 'signin';
+                $scope.modalShow = !$scope.modalShow;
+            } else {
+                document.getElementById('fileBrowse').click();
+            }
+        }
 
 
         $scope.states = ['AL','AK','AZ','AR','CA','CO','CT','DE','FL','GA','HI','ID','IL','IN','IA','KS','KY','LA','ME','MD','MA','MI','MN','MS','MO','MT','NE','NV','NH','NJ','NM','NY','NC','ND','OH','OK','OR','PA','RI','SC','SD','TN','TX','UT','VT','VA','WA','WV','WI','WY'];

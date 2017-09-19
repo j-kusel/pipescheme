@@ -8,6 +8,7 @@ const compression = require('compression');
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 const flash = require('connect-flash');
+const qt = require('quickthumb');
 
 module.exports = function() {
     const app = express();
@@ -39,7 +40,9 @@ module.exports = function() {
     app.use('/', express.static('./public'));
     app.use('/lib', express.static('./node_modules'));
     app.use('/bower', express.static('./bower_components'));
-    app.use('/tmp', express.static('./tmp'));
+    
+    let staticfiles = '/' + config.fileUploads.split('/').pop();
+    app.use(staticfiles, qt.static(config.fileUploads));
 
     return app;
 };

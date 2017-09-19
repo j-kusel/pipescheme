@@ -7,7 +7,7 @@
         <script type="text/javascript" src="bower/angular/angular.js"></script>
         <script type="text/javascript" src="bower/angular-resource/angular-resource.js"></script>
     </head>
-    <body ng-app="app" ng-controller="PipeController" ng-init="user = <%= JSON.stringify(user) %>">
+    <body ng-app="app" ng-controller="PipeController" ng-init="user = <%= JSON.stringify(user) %>; flashmsg = <%= flashmsg %>">
         <div id="headbar">
             <div id="title">
                 <h3>PIPESCHEME</h3>
@@ -55,48 +55,57 @@
             </ul>
         </div>
         <div>
-            <ps-modal flashmsg="<%= flashmsg %>" show="modalShow">
+            <ps-modal flashmsg="default" show="modalShow">
+                <!-- IF THAT DOESN'T WORK SWITCH BACK TO TEMPLATE TAG -->
                 <ps-signin ng-if="formtype==='signin'"></ps-signin>
                 <ps-signup ng-if="formtype==='signup'"></ps-signup>
-                <div ng-if="formtype==='about'" ng-include="'templates/about.html'"></div>
+                <div ng-if="formtype==='about'" ng-include="'templates/about.html'"></div>               
             </ps-modal>
         </div>
         <div id="main">
             <div id="map" style="width: 100%; height: 350px; z-index: 1;"></div>
+
             <ul class="info">
                 <li>{{ focus.county }} CO.</li>
                 <li style="opacity: .2;">|</li>
                 <li>{{ focus.address }}</li>
             </ul>
             <h1 id="city">{{ focus.city }}, {{ focus.state }}</h1>
-            <ul class="info">
-                <li>{{ focus.datetime | date : "MMM dd, y" }}</li>
-                <li style="opacity: .2;">|</li>
-                <li>rpt. #{{ focus.report }}</li>
-            </ul>
-            <p id="narrative">{{ focus.narrative }}</p>
-            <p>injuries: {{ focus.injuries }}</p>
-            <p>fatalities: {{ focus.fatalities }}</p>
-            <p>operator name?: {{ focus.operator }}</p>
-            <p>operator type?: {{ focus.operatorType }}</p>
-            <p>investigation?: {{ focus.investigation }}</p>
-            <p>cause?: {{ focus.cause }}</p>
-            <p>cause details?: {{ focus.causeDetails }}</p>
-            <p>work?: {{ focus.work }}</p>
-            <p>root cause?: {{ focus.rootCause }}</p>
-            <p>root cause other?: {{ focus.rootCauseOther }}</p>
-            <p>{{ focus.year }}</p>
-
-            <div id="gallery" ng-repeat="photo in photos">
-                <p>{{photo.filename}}</p>
+            <div class="details">
+                <ul class="info">
+                    <li>{{ focus.datetime | date : "MMM dd, y" }}</li>
+                    <li style="opacity: .2;">|</li>
+                    <li>rpt. #{{ focus.report }}</li>
+                </ul>
+                <p id="narrative">{{ focus.narrative }}</p>
+                <p>injuries: {{ focus.injuries }}</p>
+                <p>fatalities: {{ focus.fatalities }}</p>
+                <p>operator name?: {{ focus.operator }}</p>
+                <p>operator type?: {{ focus.operatorType }}</p>
+                <p>investigation?: {{ focus.investigation }}</p>
+                <p>cause?: {{ focus.cause }}</p>
+                <p>cause details?: {{ focus.causeDetails }}</p>
+                <p>work?: {{ focus.work }}</p>
+                <p>root cause?: {{ focus.rootCause }}</p>
+                <p>root cause other?: {{ focus.rootCauseOther }}</p>
+                <p>{{ focus.year }}</p>
             </div>
+    
 
-            <form action="/api/photos" enctype="multipart/form-data" method="post">
-                <input type="text" name="location" value="{{focus.id}}" readonly />
-                <input type="file" name="userPhoto" />
-               
-                <input type="submit" value="newPhoto" />
-            </form>
+            <div id="gallery">
+                <div class="thumbnail">
+                    <form id="upload" action="/api/photos" enctype="multipart/form-data" method="post">
+                        <input type="hidden" name="location" value="{{focus.id}}" readonly />
+                        <input type="file" id="fileBrowse" name="userPhoto" onchange="upload.submit()" style="display: none;"/>
+                    </form>
+                    <img src="/assets/uploadButton.png" id="uploadButton" ng-click="photoUpload()" style="cursor: pointer;"/>
+
+                </div>
+                <div class="thumbnail" ng-repeat="thumb in photos">
+                    <!-- <br ng-if="$index % 4 == 0"> -->
+                    <img src="{{thumb.filename}}?dim=200x100" />
+                </div>                    
+            </div>
 
         </div>
 

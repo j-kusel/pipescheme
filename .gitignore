@@ -8,3 +8,4 @@ googleAPI.js
 *.map
 tmp/*
 filePointer.js
+*.psd

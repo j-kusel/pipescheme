@@ -108,7 +108,7 @@ body {
   #main #narrative {
     margin: 0px;
     padding: 3px 20px;
-    width: 40%;
+    width: 90%;
     font-family: "Lato", sans-serif;
     font-size: 0.8em; }
 
@@ -152,7 +152,7 @@ form input[type="text"], form input[type="password"] {
   background-color: transparent;
   border-style: none;
   border-bottom: solid 2px #EEEEEE; }
-form input[type="submit"] {
+form input[type="submit"], form input[type="file"] {
   appearance: none;
   -webkit-appearance: none;
   -apple-appearance: none;
@@ -167,5 +167,28 @@ form input[type="submit"] {
   border-radius: 2px;
   border-width: 1px;
   border-color: #EEEEEE; }
+
+.details {
+  position: relative;
+  width: 40%;
+  float: left; }
+
+#gallery {
+  position: relative;
+  float: right;
+  width: 50%;
+  height: 40%;
+  margin: 1.5em;
+  overflow-y: scroll; }
+  #gallery .thumbnail {
+    display: inline;
+    width: auto; }
+
+#upload input {
+  margin: 0px; }
+#upload #uploadButton {
+  width: 200px;
+  height: 100px;
+  display: inline; }
 
 /*# sourceMappingURL=dashboard.css.map */
