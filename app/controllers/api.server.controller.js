@@ -74,6 +74,11 @@ exports.photos = function(req, res, next) {
             if (err) {
                 return next(err);
             }
-            res.json(photos);
+            let thumbPhotos = []
+            photos.forEach(function (photo) {
+                photo.thumb = photo.filename + '?dim=200x100';
+                thumbPhotos.push(photo);
+            });
+            res.json(thumbPhotos);
         });
 };

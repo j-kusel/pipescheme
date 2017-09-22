@@ -90,6 +90,7 @@ angular.module('pipeScheme')
             photoRequest($scope.focus.id)
                 .then(function (photos) {
                     $scope.photos = photos;
+                    if ($scope.photos[1]) console.log($scope.photos[1].thumb);
                 });
             $scope.$apply();
         };
@@ -149,6 +150,12 @@ angular.module('pipeScheme')
             } else {
                 document.getElementById('fileBrowse').click();
             }
+        }
+        $scope.photoFocus = function (photoIndex) {
+            console.log(photoIndex);
+            $scope.photoIndex = photoIndex;
+            $scope.formtype = 'lightbox';
+            $scope.modalShow = !$scope.modalShow;
         }
 
 

@@ -2,6 +2,7 @@
 <html>
     <head>
         <title>dashboard</title>
+        <link rel="stylesheet" href="css/ngCloak.css" />
         <link rel="stylesheet" href="lib/leaflet/dist/leaflet.css" />
         <link rel="stylesheet" href="css/dashboard.css" />
         <script type="text/javascript" src="bower/angular/angular.js"></script>
@@ -59,6 +60,7 @@
                 <!-- IF THAT DOESN'T WORK SWITCH BACK TO TEMPLATE TAG -->
                 <ps-signin ng-if="formtype==='signin'"></ps-signin>
                 <ps-signup ng-if="formtype==='signup'"></ps-signup>
+                <ps-lightbox ng-if="formtype==='lightbox'"></ps-lightbox>
                 <div ng-if="formtype==='about'" ng-include="'templates/about.html'"></div>               
             </ps-modal>
         </div>
@@ -101,9 +103,8 @@
                     <img src="/assets/uploadButton.png" id="uploadButton" ng-click="photoUpload()" style="cursor: pointer;"/>
 
                 </div>
-                <div class="thumbnail" ng-repeat="thumb in photos">
-                    <!-- <br ng-if="$index % 4 == 0"> -->
-                    <img src="{{thumb.filename}}?dim=200x100" />
+                <div class="thumbnail" ng-repeat="photo in photos">
+                    <img ng-src="{{photo.filename}}?dim=200x100" ng-click="photoFocus($index)" style="cursor: pointer;" />
                 </div>                    
             </div>
 
@@ -126,6 +127,7 @@
         <!-- directives -->
         <script src="js/directives/psModal.client.directive.js"></script>
         <script src="js/directives/loginForms.client.directive.js"></script>
+        <script src="js/directives/lightbox.client.directive.js"></script>
 
     </body>
 </html>
