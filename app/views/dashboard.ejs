@@ -17,23 +17,23 @@
                 <span class="span-sel">state:</span>
                 <div class="select-css">
                     <select class="selector"
-                            ng-model="selected"
+                            ng-model="query.state"
                             ng-options="state for state in states"
-                            ng-change="changeState(selected)">
+                            ng-change="updateView()">
                     </select>
                 </div>
                 <input type="checkbox"
                     id="checker"
-                    ng-model="fatal"
-                    ng-change="changeState(selected)" />
+                    ng-model="query.fatal"
+                    ng-change="updateView()" />
                 <label for="checker"><span></span></label>
                 <span class="span-check">fatal?</span>
                 <span class="span-sel">year:</span>
                 <div class="select-css">
                     <select class="selector"
-                            ng-model="year"
+                            ng-model="query.year"
                             ng-options="year for year in years"
-                            ng-change="changeState(selected)">
+                            ng-change="updateView()">
                     </select>
                 </div>
 

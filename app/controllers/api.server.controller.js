@@ -43,12 +43,14 @@ exports.savePhoto = function(req, res, next) {
 }
 
 exports.accidents = function(req, res, next) {
+    console.log('api hit.');
+    console.log(req.query);
     var Accident = mongoose.model('Accident');
     var query = {
         LOCATION_STATE_ABBREVIATION: req.params.state
     };
     if (req.query.fatal == 'true') query.FATALITY_IND = true;
-    if (req.query.year) query.IYEAR = req.query.year;
+    if (req.query.year && req.query.year !== 'all') query.IYEAR = req.query.year;
 
     Accident.find(query, (err, accidents) => {
         if (err) {
