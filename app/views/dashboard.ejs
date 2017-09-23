@@ -45,13 +45,13 @@
                     <li onclick="window.location.href='/logout'" style="cursor: pointer;">logout</li>
                 </div>
                 <div ng-if="!user.firstName">
-                    <li ng-click='toggleSignin()' style="cursor: pointer;">signin</li>
+                    <li ng-click='toggleModal("signin")' style="cursor: pointer;">signin</li>
                     <li style="opacity: .2;">|</li>
-                    <li ng-click='toggleSignup()' style="cursor: pointer;">signup</li>
+                    <li ng-click='toggleModal("signup")' style="cursor: pointer;">signup</li>
                 </div>
                 <div>
                     <li style="opacity: .2;">|</li>
-                    <li ng-click='toggleAbout()' style="cursor: pointer;">about</li>
+                    <li ng-click='toggleModal("about")' style="cursor: pointer;">about</li>
                 </div>
             </ul>
         </div>

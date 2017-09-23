@@ -98,9 +98,8 @@ angular.module('pipeScheme')
         };
 
         var focusLoader = function(id) {
-            console.log('made it to focusLoader');
             var accident = $scope.data[id];
-            var focus = {
+/*            var focus = {
                 id: accident._id,
                 narrative: accident.NARRATIVE,
                 address: accident.LOCATION_STREET_ADDRESS,
@@ -124,27 +123,22 @@ angular.module('pipeScheme')
                 rootCauseOther: accident.ROOT_CAUSE_OTHER,
                 year: accident.IYEAR
             };
+*/
             $scope.map.flyTo(new L.LatLng(accident.LOCATION_LATITUDE, accident.LOCATION_LONGITUDE), 9, {
                 animate: true,
                 duration: .7,
                 easeLinearity: .9
             });
-            return focus;
+            return accident;
         };
 
         $scope.modalShow = false;
-        $scope.toggleSignin = function () {
-            $scope.formtype = 'signin';
+
+        $scope.toggleModal = function (formtype) {
+            $scope.formtype = formtype;
             $scope.modalShow = !$scope.modalShow;
         };
-        $scope.toggleSignup = function () {
-            $scope.formtype = 'signup';
-            $scope.modalShow = !$scope.modalShow;
-        };
-        $scope.toggleAbout = function () {
-            $scope.formtype = 'about';
-            $scope.modalShow = !$scope.modalShow;
-        };
+
         $scope.photoUpload = function () {
             if (!$scope.user.firstName) {
                 $scope.flashmsg = "login before uploading a photo!";
