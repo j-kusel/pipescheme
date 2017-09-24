@@ -17,8 +17,8 @@ angular.module('pipeScheme')
             var markers = [];
             $scope.markers.clearLayers();           
             if (data.length) {
-                $scope.currentAccident = data[0]._id;
-                $scope.data[$scope.currentAccident] = data[0];
+                $scope.focus = data[0];
+                $scope.data[$scope.focus._id] = data[0];
                 data.forEach(function (element) {
                     $scope.data[element._id] = element;
                     var marker = L
@@ -31,8 +31,18 @@ angular.module('pipeScheme')
                 $scope.markers = L
                     .layerGroup(markers)
                     .addTo($scope.map);
-                $scope.focus = focusLoader($scope.currentAccident);
             };
+
+            $scope.map.flyTo(new L.LatLng(
+                    $scope.focus.LOCATION_LATITUDE,
+                    $scope.focus.LOCATION_LONGITUDE
+                ), 9, {
+                    animate: true,
+                    duration: .7,
+                    easeLinearity: .9
+                }
+            );
+
         };
 
         var init = function(data) {
@@ -88,47 +98,28 @@ angular.module('pipeScheme')
         }
 
         var markerClick = function(e) {
-            $scope.currentAccident = this.options.id;
-            $scope.focus = focusLoader(this.options.id);
-            photoRequest($scope.focus.id)
+            $scope.focus = $scope.data[this.options.id];
+
+            $scope.map.flyTo(new L.LatLng(
+                    $scope.focus.LOCATION_LATITUDE,
+                    $scope.focus.LOCATION_LONGITUDE
+                ), 9, {
+                    animate: true,
+                    duration: .7,
+                    easeLinearity: .9
+                }
+            );
+
+            photoRequest($scope.focus._id)
                 .then(function (photos) {
                     $scope.photos = photos;
-               });
+                });
             $scope.$apply();
         };
 
         var focusLoader = function(id) {
             var accident = $scope.data[id];
-/*            var focus = {
-                id: accident._id,
-                narrative: accident.NARRATIVE,
-                address: accident.LOCATION_STREET_ADDRESS,
-                city: accident.LOCATION_CITY_NAME,
-                county: accident.LOCATION_COUNTY_NAME,
-                state: accident.LOCATION_STATE_ABBREVIATION,
-                zip: accident.LOCATION_POSTAL_CODE,
-                fatal: accident.FATALITY_IND,
-                fatalities: accident.FATAL,
-                injure: accident.INJURY_IND,
-                injuries: accident.INJURE,
-                datetime: accident.INCIDENT_IDENTIFIED_DATETIME,
-                report: accident.REPORT_NUMBER,
-                operator: accident.NAME,
-                operatorType: accident.OPERATOR_TYPE,
-                investigation: accident.INVESTIGATION_STATUS_DETAILS,
-                cause: accident.CAUSE,
-                causeDetails: accident.CAUSE_DETAILS,
-                work: accident.WORK_PERFORMED,
-                rootCause: accident.ROOT_CAUSE,
-                rootCauseOther: accident.ROOT_CAUSE_OTHER,
-                year: accident.IYEAR
-            };
-*/
-            $scope.map.flyTo(new L.LatLng(accident.LOCATION_LATITUDE, accident.LOCATION_LONGITUDE), 9, {
-                animate: true,
-                duration: .7,
-                easeLinearity: .9
-            });
+
             return accident;
         };
 
@@ -142,8 +133,7 @@ angular.module('pipeScheme')
         $scope.photoUpload = function () {
             if (!$scope.user.firstName) {
                 $scope.flashmsg = "login before uploading a photo!";
-                $scope.formtype = 'signin';
-                $scope.modalShow = !$scope.modalShow;
+                $scope.toggleModal('signin');
             } else {
                 document.getElementById('fileBrowse').click();
             }

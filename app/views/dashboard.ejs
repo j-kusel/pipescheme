@@ -68,18 +68,19 @@
             <div id="map" style="width: 100%; height: 350px; z-index: 1;"></div>
 
             <ul class="info">
-                <li>{{ focus.county }} CO.</li>
+                <li>{{ focus.LOCATION_COUNTY_NAME }} CO.</li>
                 <li style="opacity: .2;">|</li>
-                <li>{{ focus.address }}</li>
+                <li>{{ focus.LOCATION_STREET_ADDRESS }}</li>
             </ul>
-            <h1 id="city">{{ focus.city }}, {{ focus.state }}</h1>
+            <h1 id="city">{{ focus.LOCATION_CITY_NAME }}, {{ focus.LOCATION_STATE_ABBREVIATION }}</h1>
             <div class="details">
                 <ul class="info">
-                    <li>{{ focus.datetime | date : "MMM dd, y" }}</li>
+                    <li>{{ focus.INCIDENT_IDENTIFIED_DATETIME | date : "MMM dd, y" }}</li>
                     <li style="opacity: .2;">|</li>
-                    <li>rpt. #{{ focus.report }}</li>
+                    <li>rpt. #{{ focus.REPORT_NUMBER }}</li>
                 </ul>
-                <p id="narrative">{{ focus.narrative }}</p>
+                <p id="narrative">{{ focus.NARRATIVE }}</p>
+                <!--
                 <p>injuries: {{ focus.injuries }}</p>
                 <p>fatalities: {{ focus.fatalities }}</p>
                 <p>operator name?: {{ focus.operator }}</p>
@@ -90,7 +91,8 @@
                 <p>work?: {{ focus.work }}</p>
                 <p>root cause?: {{ focus.rootCause }}</p>
                 <p>root cause other?: {{ focus.rootCauseOther }}</p>
-                <p>{{ focus.year }}</p>
+                -->
+                <p>{{ focus.IYEAR }}</p>
             </div>
     
 
