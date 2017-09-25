@@ -65,14 +65,17 @@
             </ps-modal>
         </div>
         <div id="main">
+            <!--
             <div id="map" style="width: 100%; height: 350px; z-index: 1;"></div>
+            -->
+            <ps-leaflet focus="focus"></ps-leaflet>
 
             <ul class="info">
                 <li>{{ focus.LOCATION_COUNTY_NAME }} CO.</li>
                 <li style="opacity: .2;">|</li>
                 <li>{{ focus.LOCATION_STREET_ADDRESS }}</li>
             </ul>
-            <h1 id="city">{{ focus.LOCATION_CITY_NAME }}, {{ focus.LOCATION_STATE_ABBREVIATION }}</h1>
+            <h1 id="city">{{ data[focus._id].LOCATION_CITY_NAME }}, {{ focus.LOCATION_STATE_ABBREVIATION }}</h1>
             <div class="details">
                 <ul class="info">
                     <li>{{ focus.INCIDENT_IDENTIFIED_DATETIME | date : "MMM dd, y" }}</li>
@@ -130,6 +133,8 @@
         <script src="js/directives/psModal.client.directive.js"></script>
         <script src="js/directives/loginForms.client.directive.js"></script>
         <script src="js/directives/lightbox.client.directive.js"></script>
+        <script src="js/directives/psLeaflet.client.directive.js"></script>
+
 
     </body>
 </html>

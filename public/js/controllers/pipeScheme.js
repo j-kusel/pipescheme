@@ -1,49 +1,24 @@
 
 
 angular.module('pipeScheme')
-    .controller('PipeController', ['$scope', '$http', 'AccidentService', 'PhotoService', 'GeoService', function($scope, $http, AccidentService, PhotoService, GeoService) {
+    .controller('PipeController', ['$rootScope', '$scope', '$http', 'AccidentService', 'PhotoService', 'GeoService', function($rootScope, $scope, $http, AccidentService, PhotoService, GeoService) {
+
         
         $scope.$on('accident.update', function (event) {
             AccidentService.API
                 .query($scope.query)
                 .$promise
-                .then(repopulate);
+                .then(function (data) {
+                    $scope.data = {};
+                    data.forEach(function (element) {
+                        $scope.data[element._id] = element;
+                    });
+                    $scope.focus = data[0];
+                    $rootScope.$broadcast('map.update', $scope.data);
+                });
         });
 
         $scope.updateView = AccidentService.update;
-
-        var repopulate = function(data) {
-            console.log('repopulate:' + data);
-            var markers = [];
-            $scope.markers.clearLayers();           
-            if (data.length) {
-                $scope.focus = data[0];
-                $scope.data[$scope.focus._id] = data[0];
-                data.forEach(function (element) {
-                    $scope.data[element._id] = element;
-                    var marker = L
-                        .marker([element.LOCATION_LATITUDE,
-                            element.LOCATION_LONGITUDE],
-                            {id: element._id})
-                        .on('click', markerClick);
-                    markers.push(marker);
-                });
-                $scope.markers = L
-                    .layerGroup(markers)
-                    .addTo($scope.map);
-            };
-
-            $scope.map.flyTo(new L.LatLng(
-                    $scope.focus.LOCATION_LATITUDE,
-                    $scope.focus.LOCATION_LONGITUDE
-                ), 9, {
-                    animate: true,
-                    duration: .7,
-                    easeLinearity: .9
-                }
-            );
-
-        };
 
         var init = function(data) {
             $scope.show = true;
@@ -58,17 +33,9 @@ angular.module('pipeScheme')
                 year: 'all'
             };
 
-            $scope.markers = L.layerGroup();
+            $rootScope.$broadcast('accident.update');
 
-            $scope.map = L.map('map', {
-                center: [35,-106],
-                zoom: 10,
-                scrollWheelZoom: false,
-                zoomControl: false
-            });
-
-            L.control.zoom({position: 'bottomleft'}).addTo($scope.map);
-            L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png').addTo($scope.map);
+            /*
             GeoService.getGeolocation().then(function (position) {
                 $scope.map.flyTo(new L.LatLng(position.coords.latitude, position.coords.longitude), 6, {
                     animate: true,
@@ -88,13 +55,14 @@ angular.module('pipeScheme')
             }, function (err) {
                 console.log(err);
             });
+            */
                     
-            repopulate(data);
+            // repopulate(data);
         };
 
         var photoRequest = function (accident) {
             var query = {location: accident};
-            return PhotoService.query(query).$promise;
+            return PhotoService.API.query(query).$promise;
         }
 
         var markerClick = function(e) {
@@ -149,6 +117,8 @@ angular.module('pipeScheme')
         $scope.states = ['AL','AK','AZ','AR','CA','CO','CT','DE','FL','GA','HI','ID','IL','IN','IA','KS','KY','LA','ME','MD','MA','MI','MN','MS','MO','MT','NE','NV','NH','NJ','NM','NY','NC','ND','OH','OK','OR','PA','RI','SC','SD','TN','TX','UT','VT','VA','WA','WV','WI','WY'];
         $scope.years = ['all','2011','2012','2013','2014','2015','2016','2017'];
         $scope.state = 'TX';
+
+
         AccidentService.API.query({state: $scope.state}).$promise.then(function (data) {
             console.log('init data: ' + data);
             init(data);
