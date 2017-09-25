@@ -60,7 +60,7 @@
                 <!-- IF THAT DOESN'T WORK SWITCH BACK TO TEMPLATE TAG -->
                 <ps-signin ng-if="formtype==='signin'"></ps-signin>
                 <ps-signup ng-if="formtype==='signup'"></ps-signup>
-                <ps-lightbox ng-if="formtype==='lightbox'"></ps-lightbox>
+                <ps-lightbox ng-if="formtype==='lightbox'" photo="modalArgs"></ps-lightbox>
                 <div ng-if="formtype==='about'" ng-include="'templates/about.html'"></div>               
             </ps-modal>
         </div>
@@ -109,7 +109,7 @@
 
                 </div>
                 <div class="thumbnail" ng-repeat="photo in photos">
-                    <img ng-src="{{photo.filename}}?dim=200x100" ng-click="photoFocus($index)" style="cursor: pointer;" />
+                    <img ng-src="{{photo.filename}}?dim=200x100" ng-click="toggleModal('lightbox',[$index])" style="cursor: pointer;" />
                 </div>                    
             </div>
 
@@ -120,6 +120,7 @@
 
         <!-- application -->
         <script src="js/app.js"></script>
+        <script src="js/config.js"></script>
 
         <!-- services -->
         <script src="js/services/accident.service.js"></script>

@@ -20,20 +20,33 @@ angular.module('pipeScheme')
 
         $scope.updateView = AccidentService.update;
 
-        var init = function(data) {
+        var init = function() {
             $scope.show = true;
-            $scope.data = {};
             $scope.state = 'TX';
             $scope.fatal = false;
             $scope.year = 'all';
-            $scope.focus = false;
+            $scope.focus = '';
+
             $scope.query = {
                 state: $scope.state,
                 fatal: $scope.fatal,
-                year: 'all'
+                year: $scope.year
             };
 
-            $rootScope.$broadcast('accident.update');
+            $scope.$watch(function(scope) { return scope.focus; },
+                function () {
+                    PhotoService.API
+                        .query({
+                            location: $scope.focus
+                        })
+                        .$promise
+                            .then(function (photos) {
+                                $scope.photos = photos;
+                            });
+                }
+            );
+
+            AccidentService.update();
 
             /*
             GeoService.getGeolocation().then(function (position) {
@@ -57,44 +70,13 @@ angular.module('pipeScheme')
             });
             */
                     
-            // repopulate(data);
-        };
-
-        var photoRequest = function (accident) {
-            var query = {location: accident};
-            return PhotoService.API.query(query).$promise;
-        }
-
-        var markerClick = function(e) {
-            $scope.focus = $scope.data[this.options.id];
-
-            $scope.map.flyTo(new L.LatLng(
-                    $scope.focus.LOCATION_LATITUDE,
-                    $scope.focus.LOCATION_LONGITUDE
-                ), 9, {
-                    animate: true,
-                    duration: .7,
-                    easeLinearity: .9
-                }
-            );
-
-            photoRequest($scope.focus._id)
-                .then(function (photos) {
-                    $scope.photos = photos;
-                });
-            $scope.$apply();
-        };
-
-        var focusLoader = function(id) {
-            var accident = $scope.data[id];
-
-            return accident;
         };
 
         $scope.modalShow = false;
 
-        $scope.toggleModal = function (formtype) {
+        $scope.toggleModal = function (formtype, args) {
             $scope.formtype = formtype;
+            $scope.modalArgs = args;
             $scope.modalShow = !$scope.modalShow;
         };
 
@@ -106,22 +88,10 @@ angular.module('pipeScheme')
                 document.getElementById('fileBrowse').click();
             }
         }
-        $scope.photoFocus = function (photoIndex) {
-            $scope.photoIndex = photoIndex;
-            $scope.formtype = 'lightbox';
-            $scope.modalShow = !$scope.modalShow;
-        }
 
+        $scope.states = config.states;
+        $scope.years = config.years;
 
-        $scope.query = {};
-        $scope.states = ['AL','AK','AZ','AR','CA','CO','CT','DE','FL','GA','HI','ID','IL','IN','IA','KS','KY','LA','ME','MD','MA','MI','MN','MS','MO','MT','NE','NV','NH','NJ','NM','NY','NC','ND','OH','OK','OR','PA','RI','SC','SD','TN','TX','UT','VT','VA','WA','WV','WI','WY'];
-        $scope.years = ['all','2011','2012','2013','2014','2015','2016','2017'];
-        $scope.state = 'TX';
-
-
-        AccidentService.API.query({state: $scope.state}).$promise.then(function (data) {
-            console.log('init data: ' + data);
-            init(data);
-        });
+        init();
 }]);
 

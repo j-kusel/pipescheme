@@ -37,10 +37,11 @@ function link (scope, element, attrs) {
                     element.LOCATION_LONGITUDE],
                     {id: key})
                 .on('click', function () {
-                    scope.focus = this.options.id;
-                    scope.$apply();
-
-                    let accident = data[this.options.id];
+                    let self = this;
+                    scope.$apply(function () {
+                        scope.focus = self.options.id;                
+                    });
+                    let accident = data[self.options.id];
 
                     scope.map.flyTo(new L.LatLng(
                             accident.LOCATION_LATITUDE,
