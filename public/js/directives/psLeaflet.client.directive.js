@@ -37,8 +37,21 @@ function link (scope, element, attrs) {
                     element.LOCATION_LONGITUDE],
                     {id: key})
                 .on('click', function () {
-                    console.log('click works: ' + this.options._id);
-                    // scope.focus
+                    scope.focus = this.options.id;
+                    scope.$apply();
+
+                    let accident = data[this.options.id];
+
+                    scope.map.flyTo(new L.LatLng(
+                            accident.LOCATION_LATITUDE,
+                            accident.LOCATION_LONGITUDE
+                        ), 9, {
+                            animate: true,
+                            duration: .7,
+                            easeLinearity: .9
+                        }
+                    );
+
                 });
             markers.push(marker);
         };

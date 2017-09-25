@@ -13,7 +13,7 @@ angular.module('pipeScheme')
                     data.forEach(function (element) {
                         $scope.data[element._id] = element;
                     });
-                    $scope.focus = data[0];
+                    $scope.focus = data[0]._id;
                     $rootScope.$broadcast('map.update', $scope.data);
                 });
         });
@@ -26,7 +26,7 @@ angular.module('pipeScheme')
             $scope.state = 'TX';
             $scope.fatal = false;
             $scope.year = 'all';
-            $scope.focus = {};
+            $scope.focus = false;
             $scope.query = {
                 state: $scope.state,
                 fatal: $scope.fatal,

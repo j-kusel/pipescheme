@@ -71,38 +71,38 @@
             <ps-leaflet focus="focus"></ps-leaflet>
 
             <ul class="info">
-                <li>{{ focus.LOCATION_COUNTY_NAME }} CO.</li>
+                <li>{{ data[focus].LOCATION_COUNTY_NAME }} CO.</li>
                 <li style="opacity: .2;">|</li>
-                <li>{{ focus.LOCATION_STREET_ADDRESS }}</li>
+                <li>{{ data[focus].LOCATION_STREET_ADDRESS }}</li>
             </ul>
-            <h1 id="city">{{ data[focus._id].LOCATION_CITY_NAME }}, {{ focus.LOCATION_STATE_ABBREVIATION }}</h1>
+            <h1 id="city">{{ data[focus].LOCATION_CITY_NAME }}, {{ data[focus].LOCATION_STATE_ABBREVIATION }}</h1>
             <div class="details">
                 <ul class="info">
-                    <li>{{ focus.INCIDENT_IDENTIFIED_DATETIME | date : "MMM dd, y" }}</li>
+                    <li>{{ data[focus].INCIDENT_IDENTIFIED_DATETIME | date : "MMM dd, y" }}</li>
                     <li style="opacity: .2;">|</li>
-                    <li>rpt. #{{ focus.REPORT_NUMBER }}</li>
+                    <li>rpt. #{{ data[focus].REPORT_NUMBER }}</li>
                 </ul>
-                <p id="narrative">{{ focus.NARRATIVE }}</p>
+                <p id="narrative">{{ data[focus].NARRATIVE }}</p>
                 <!--
-                <p>injuries: {{ focus.injuries }}</p>
-                <p>fatalities: {{ focus.fatalities }}</p>
-                <p>operator name?: {{ focus.operator }}</p>
-                <p>operator type?: {{ focus.operatorType }}</p>
-                <p>investigation?: {{ focus.investigation }}</p>
-                <p>cause?: {{ focus.cause }}</p>
-                <p>cause details?: {{ focus.causeDetails }}</p>
-                <p>work?: {{ focus.work }}</p>
-                <p>root cause?: {{ focus.rootCause }}</p>
-                <p>root cause other?: {{ focus.rootCauseOther }}</p>
+                <p>injuries: {{ data[focus].injuries }}</p>
+                <p>fatalities: {{ data[focus].fatalities }}</p>
+                <p>operator name?: {{ data[focus].operator }}</p>
+                <p>operator type?: {{ data[focus].operatorType }}</p>
+                <p>investigation?: {{ data[focus].investigation }}</p>
+                <p>cause?: {{ data[focus].cause }}</p>
+                <p>cause details?: {{ data[focus].causeDetails }}</p>
+                <p>work?: {{ data[focus].work }}</p>
+                <p>root cause?: {{ data[focus].rootCause }}</p>
+                <p>root cause other?: {{ data[focus].rootCauseOther }}</p>
                 -->
-                <p>{{ focus.IYEAR }}</p>
+                <p>{{ data[focus].IYEAR }}</p>
             </div>
     
 
             <div id="gallery">
                 <div class="thumbnail">
                     <form id="upload" action="/api/photos" enctype="multipart/form-data" method="post">
-                        <input type="hidden" name="location" value="{{focus.id}}" readonly />
+                        <input type="hidden" name="location" value="{{data[focus]._id}}" readonly />
                         <input type="file" id="fileBrowse" name="userPhoto" onchange="upload.submit()" style="display: none;"/>
                     </form>
                     <img src="/assets/uploadButton.png" id="uploadButton" ng-click="photoUpload()" style="cursor: pointer;"/>
