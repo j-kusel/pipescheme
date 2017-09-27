@@ -23,10 +23,12 @@ angular.module('pipeScheme')
             L.control.zoom({position: 'bottomleft'}).addTo(scope.map);
             L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png').addTo(scope.map);
 
-            scope.$on('map.update', function (event, data) {
+            var unregisterFn = scope.$on('map.update', function (event, data) {
                 var markers = [];
                 var focus;
-                scope.markers.clearLayers();
+                scope.markers
+                    .off()
+                    .clearLayers();
                 var first;
                 for (var key in data) {
                     let element = data[key];
@@ -69,6 +71,11 @@ angular.module('pipeScheme')
                     }
                 );
         
+            });
+
+            scope.$on('$destroy', function () {
+                scope.markers.off();
+                unregisterFn;
             });
         }
     });

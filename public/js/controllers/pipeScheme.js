@@ -9,12 +9,14 @@ angular.module('pipeScheme')
                 .query($scope.query)
                 .$promise
                 .then(function (data) {
-                    $scope.data = {};
-                    data.forEach(function (element) {
-                        $scope.data[element._id] = element;
-                    });
-                    $scope.focus = data[0]._id;
-                    $rootScope.$broadcast('map.update', $scope.data);
+                    if (data.length) {
+                        $scope.data = {};
+                        data.forEach(function (element) {
+                            $scope.data[element._id] = element;
+                        });
+                        $scope.focus = data[0]._id;
+                        $rootScope.$broadcast('map.update', $scope.data);
+                    }
                 });
         });
 
@@ -49,18 +51,11 @@ angular.module('pipeScheme')
 
             AccidentService.update();
 
-            /*
             GeoService.getGeolocation().then(function (position) {
-                $scope.map.flyTo(new L.LatLng(position.coords.latitude, position.coords.longitude), 6, {
-                    animate: true,
-                    duration: .7,
-                    easeLinearity: .9
-                });
                 GeoService.convertGeolocation(position.coords).then(
                     function (data) {
-                        console.log('google:' + data.results);
                         $scope.query.state = $scope.state = data.results[0].address_components[5].short_name;
-                        $scope.updateView();
+                        AccidentService.update();
                     },
                     function (err) {
                         console.log(err);
@@ -69,7 +64,6 @@ angular.module('pipeScheme')
             }, function (err) {
                 console.log(err);
             });
-            */
                     
         };
 
