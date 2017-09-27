@@ -1,6 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Archivo+Black|Lato')
 
+$leftpad: 40px
+
 body
+  width: 100%
   background-color: orange
   margin: 0px
 
@@ -100,19 +103,20 @@ body
 
 .leaflet-tile-pane
   box-shadow: 10px 3px 15px black inset
-
       
 #main
   top: 25px
 
   #map
     box-shadow: 10px 3px 15px black inset
+    margin-bottom: 10px
 
 
   .info
-    width: 100%
+    width: 80%
     margin: 0px
-    padding: 15px 3px 3px 20px
+    padding: 15px 3px 3px $leftpad
+
 
     li
       display: inline
@@ -125,11 +129,11 @@ body
     margin: 0px
     font-family: 'Archivo Black', sans-serif
     font-size: 5em
-    padding: 0px 30px 0px 20px
+    padding: 0px 30px 0px $leftpad
 
   #narrative
     margin: 0px
-    padding: 3px 20px
+    padding: 3px $leftpad
     width: 90%
     font-family: 'Lato', sans-serif
     font-size: .8em
@@ -146,7 +150,7 @@ body
   position: fixed
   top: 50%
   left: 50%
-  transform: translate(-50%, -50%)
+  transform: translate(-55%, -55%)
   margin: 50px
   background-color: #111111
   z-index: 51
@@ -226,3 +230,25 @@ form
     height: 100px
     display: inline
 
+#lightbox
+  width: 70%
+  height: 80%
+  padding: 10px
+
+  #photoFocus
+    position: relative
+    width: 50%
+    float: left
+    img
+      width: 100%
+      margin: 0px
+      padding: 10px
+
+  #photoText 
+    position: relative
+    float: right
+    height: 50%
+    width: 45%
+    p
+      margin: 0px
+      padding: 10px 25px

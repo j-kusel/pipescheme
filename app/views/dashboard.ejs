@@ -60,7 +60,7 @@
                 <!-- IF THAT DOESN'T WORK SWITCH BACK TO TEMPLATE TAG -->
                 <ps-signin ng-if="formtype==='signin'"></ps-signin>
                 <ps-signup ng-if="formtype==='signup'"></ps-signup>
-                <ps-lightbox ng-if="formtype==='lightbox'" args=modalArgs></ps-lightbox>
+                <ps-lightbox id="lightbox" ng-if="formtype==='lightbox'" args=modalArgs></ps-lightbox>
                 <div ng-if="formtype==='about'" ng-include="'templates/about.html'"></div>               
             </ps-modal>
         </div>
@@ -97,8 +97,8 @@
                 <p>work?: {{ data[focus].work }}</p>
                 <p>root cause?: {{ data[focus].rootCause }}</p>
                 <p>root cause other?: {{ data[focus].rootCauseOther }}</p>
-                -->
                 <p>{{ data[focus].IYEAR }}</p>
+                -->
             </div>
             <ps-Gallery focus="{{ focus }}" upload="photoUpload()" lightbox="toggleModal(formtype, args)"></ps-Gallery>
     
