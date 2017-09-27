@@ -60,7 +60,7 @@
                 <!-- IF THAT DOESN'T WORK SWITCH BACK TO TEMPLATE TAG -->
                 <ps-signin ng-if="formtype==='signin'"></ps-signin>
                 <ps-signup ng-if="formtype==='signup'"></ps-signup>
-                <ps-lightbox ng-if="formtype==='lightbox'" photo="modalArgs"></ps-lightbox>
+                <ps-lightbox ng-if="formtype==='lightbox'" args=modalArgs></ps-lightbox>
                 <div ng-if="formtype==='about'" ng-include="'templates/about.html'"></div>               
             </ps-modal>
         </div>
@@ -74,6 +74,9 @@
                 <li>{{ data[focus].LOCATION_COUNTY_NAME }} CO.</li>
                 <li style="opacity: .2;">|</li>
                 <li>{{ data[focus].LOCATION_STREET_ADDRESS }}</li>
+                <li style="opacity: .2;">|</li>
+                <li>{{ focus }}</li>
+
             </ul>
             <h1 id="city">{{ data[focus].LOCATION_CITY_NAME }}, {{ data[focus].LOCATION_STATE_ABBREVIATION }}</h1>
             <div class="details">
@@ -97,8 +100,9 @@
                 -->
                 <p>{{ data[focus].IYEAR }}</p>
             </div>
+            <ps-Gallery focus="{{ focus }}" upload="photoUpload()" lightbox="toggleModal(formtype, args)"></ps-Gallery>
     
-
+<!--
             <div id="gallery">
                 <div class="thumbnail">
                     <form id="upload" action="/api/photos" enctype="multipart/form-data" method="post">
@@ -112,7 +116,7 @@
                     <img ng-src="{{photo.filename}}?dim=200x100" ng-click="toggleModal('lightbox',[$index])" style="cursor: pointer;" />
                 </div>                    
             </div>
-
+-->
         </div>
 
         <!-- Leaflet.js -->
@@ -135,7 +139,7 @@
         <script src="js/directives/loginForms.client.directive.js"></script>
         <script src="js/directives/lightbox.client.directive.js"></script>
         <script src="js/directives/psLeaflet.client.directive.js"></script>
-
+        <script src="js/directives/gallery.client.directive.js"></script>
 
     </body>
 </html>

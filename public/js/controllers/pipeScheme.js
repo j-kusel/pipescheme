@@ -41,7 +41,8 @@ angular.module('pipeScheme')
                         })
                         .$promise
                             .then(function (photos) {
-                                $scope.photos = photos;
+                                $rootScope.$broadcast('gallery.update', photos);
+                                $rootScope.$broadcast('lightbox.update', photos);
                             });
                 }
             );
@@ -77,10 +78,11 @@ angular.module('pipeScheme')
         $scope.toggleModal = function (formtype, args) {
             $scope.formtype = formtype;
             $scope.modalArgs = args;
-            $scope.modalShow = !$scope.modalShow;
+            $scope.modalShow = !$scope.modalShow; 
         };
 
         $scope.photoUpload = function () {
+            console.log('does the function work?');
             if (!$scope.user.firstName) {
                 $scope.flashmsg = "login before uploading a photo!";
                 $scope.toggleModal('signin');
