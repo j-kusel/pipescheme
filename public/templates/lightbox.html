@@ -1,5 +1,7 @@
     <div id="photoFocus">
-        <img ng-src="{{ args['photos'][args['photoIndex']].filename }}" ng-click="advance()"/>
+    	<span ng-click="advance(-1)">&#171;</span>
+        <img id="photoLight" ng-src="{{ args['photos'][args['photoIndex']].filename }}" ng-click="advance(1)"/>
+        <span ng-click="advance(1)">&#187;</span>
     </div>
 
     <div id="photoText">

@@ -10,13 +10,15 @@ angular.module('pipeScheme')
         };
 
         function link (scope, element, attrs) {
-            scope.advance = function () {
-                if (scope.args['photoIndex'] < scope.args['photos'].length - 1) {
-                    scope.args['photoIndex']++;
-                } else {
+            scope.advance = function (direction) {
+                var newIndex = scope.args['photoIndex'] + direction;
+                if (newIndex < 0) {
+                    scope.args['photoIndex'] = scope.args['photos'].length - 1;
+                } else if (newIndex > scope.args['photos'].length - 1) {
                     scope.args['photoIndex'] = 0;
-                };
-                console.log('click works: ' + scope.args['photoIndex']);
+                } else {
+                    scope.args['photoIndex'] = newIndex;
+                }
 
             }
         }

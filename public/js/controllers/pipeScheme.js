@@ -43,6 +43,7 @@ angular.module('pipeScheme')
                         })
                         .$promise
                             .then(function (photos) {
+                                console.log(JSON.stringify(photos));
                                 $rootScope.$broadcast('gallery.update', photos);
                                 $rootScope.$broadcast('lightbox.update', photos);
                             });

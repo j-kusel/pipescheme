@@ -28,13 +28,13 @@ module.exports = function (dest) {
                     console.log('error initializing photo folder: ' + err);
                 }
                 callback(null, filepath);
-            });
+            }); 
         },
         filename: function (req, file, callback) {
             if (!req.user) {
                 req.flash('error', 'login before uploading a photo!');
             }
-            callback(null, req.user._id + '.jpg');
+            callback(null, req.user._id + '.jpg'); //'_' + (parseInt(req.user.photoCount) + 1) + '.jpg');
         }
     });
 
