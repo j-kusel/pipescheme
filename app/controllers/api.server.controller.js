@@ -2,10 +2,27 @@ var csv = require('../../config/csv');         // get csv parser
 var fs = require('fs');
 const googleAPI = require('../../config/env/googleAPI');    // get API key
 const config = require('../../config/config.js');
-const uploader = require('../../config/multer.js')(config.fileUploads); 
+//const uploader = require('../../config/multer.js')(config.fileUploads); 
+var formidable = require('formidable');
+var util = require('util');
 
 const mongoose = require('mongoose');
         
+function mkdirCheck(path, mask, callback) {
+    if (typeof(mask) == 'function') {
+        callback = mask;
+        mask = 511;
+    }
+    fs.mkdir(path, mask, function (err) {
+        if (err) {
+            if (err.code == 'EEXIST') {
+                callback(null);
+            } else {
+                callback(err);
+            }
+        } else callback(null);
+    });
+}
 
 exports.update = function(req, res, next) {
     csv.csvStream('public/csv/jan2010-present.csv', 'Accident');
@@ -15,7 +32,28 @@ exports.update = function(req, res, next) {
 
 exports.uploadPhoto = function(req, res, next) {
     console.log('made it to uploader');
-    uploader(req, res, function (err) {
+
+    var form = new formidable.IncomingForm(); 
+    req.body.photo_id = new mongoose.Types.ObjectId;
+    var filepath = config.fileUploads;
+    form.uploadDir = filepath;
+    mkdirCheck(form.uploadDir, function (err) {
+        form.parse(req, function (err, fields, files) {
+            var oldpath = files.userPhoto.path;
+            req.body.location = fields.location;
+            var newdir = form.uploadDir + '/' + req.body.location;
+            req.body.filename = '/' + filepath.split('/').pop() + '/' + req.body.location + '/' + req.body.photo_id + '.jpg';
+            var newpath = filepath + '/' + req.body.location + '/' + req.body.photo_id + '.jpg';
+            mkdirCheck(newdir, function (err) {
+                fs.rename(oldpath, newpath, function (err) {
+                    if (err) throw err;
+                    next();
+                });
+            });
+        });
+    });
+
+    /* uploader(req, res, function (err) {
         if (err) {
             return res.end('error uploading file: ' + err);
         } else {
@@ -25,16 +63,17 @@ exports.uploadPhoto = function(req, res, next) {
             
             next();
         }
-    });
+    }); */
 };
 
 exports.savePhoto = function(req, res, next) {
     console.log('made it to saver');
     var Photo = mongoose.model('Photo');
-    console.log('post: ' + req.body.location);
     var newPhoto = new Photo({
+        _id: req.body.photo_id,
         location: req.body.location,
-        filename: req.body.filename
+        filename: req.body.filename,
+        owner: req.user._id
     });
     newPhoto.save(function (err) {
        console.log('error saving: ' + err);
