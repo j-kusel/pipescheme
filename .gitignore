@@ -9,3 +9,4 @@ googleAPI.js
 tmp/*
 filePointer.js
 *.psd
+Gulpfile.js

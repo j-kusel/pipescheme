@@ -5,7 +5,7 @@
             <input type="file" id="fileBrowse" name="userPhoto" onchange="upload.submit()" style="display: none;"/>
         </form>
         <img src="/assets/uploadButton.png" id="uploadButton" ng-click="uploadAuth()" style="cursor: pointer;"/>
-
+        <span ng-if="!photos.length">&#171; no photos yet - be the first to upload one!</span>
     </div>
     <div class="thumbnail" ng-repeat="photo in photos">
         <img ng-src="{{photo.filename}}?dim=200x100" ng-click="lightbox({formtype:'lightbox',args:{photos:photos, photoIndex:$index}})" style="cursor: pointer;" /> 

@@ -111,6 +111,14 @@ body
     box-shadow: 10px 3px 15px black inset
     margin-bottom: 10px
 
+    a
+      appearance: none
+      -webkit-appearance: none
+      -apple-appearance: none
+      -moz-appearance: none
+
+      color: orange
+
 
   .info
     width: 80%
@@ -209,11 +217,18 @@ form
   width: 40%
   float: left
 
+#tabs
+  position: relative
+  float: left
+  height: 50px
+
 #gallery
   position: relative
-  float: right
+  //display: inline
+  float: left
   max-width: 50%
-  height: 40%
+  min-width: 40%
+  height: 320px
   margin: 1.5em
   padding: 5px
   border: 1px solid rgba(16, 16, 16, .3)
@@ -223,14 +238,24 @@ form
     display: inline
     width: auto
 
+    span
+      display: inline-block
+      height: 100px
+      vertical-align: middle
+      padding: 0px 15px
+      font-family: 'Lato', sans-serif
+      color: #111111
+
 #upload
   input
     margin: 0px
 
   #uploadButton
+    display: inline-block
+    vertical-align: middle
     width: 200px
     height: 100px
-    display: inline
+
 
 #lightbox
   width: auto

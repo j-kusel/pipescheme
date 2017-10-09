@@ -21,7 +21,20 @@ angular.module('pipeScheme')
             });
 
             L.control.zoom({position: 'bottomleft'}).addTo(scope.map);
-            L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png').addTo(scope.map);
+            L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png').addTo(scope.map)
+            L.tileLayer('http://tile.stamen.com/toner/{z}/{x}/{y}.png', {
+                attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://www.openstreetmap.org/copyright">ODbL</a>.'
+            }).addTo(scope.map);
+
+            var OrangeIcon = L.Icon.extend({
+                options: {
+                    //iconSize: [25, 41],
+                    iconAnchor: [12, 40]
+                }
+            })
+
+            var orangeIcon = new OrangeIcon({iconUrl: 'assets/marker.png'});
+            
 
             var unregisterFn = scope.$on('map.update', function (event, data) {
                 var markers = [];
@@ -35,8 +48,10 @@ angular.module('pipeScheme')
                     if (!first) first = [element.LOCATION_LATITUDE, element.LOCATION_LONGITUDE];
                     var marker = L
                         .marker([element.LOCATION_LATITUDE,
-                            element.LOCATION_LONGITUDE],
-                            {id: key})
+                            element.LOCATION_LONGITUDE], {
+                                id: key,
+                                icon: orangeIcon
+                            })
                         .on('click', function () {
                             let self = this;
                             scope.$apply(function () {

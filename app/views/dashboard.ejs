@@ -100,27 +100,19 @@
                 <p>{{ data[focus].IYEAR }}</p>
                 -->
             </div>
+            <ul id="tabs">
+                <li>provider</li>
+                <li style="opacity: .2;">|</li>
+                <li>gallery</li>
+            </ul>
             <ps-Gallery focus="{{ focus }}" upload="photoUpload()" lightbox="toggleModal(formtype, args)"></ps-Gallery>
-    
-<!--
-            <div id="gallery">
-                <div class="thumbnail">
-                    <form id="upload" action="/api/photos" enctype="multipart/form-data" method="post">
-                        <input type="hidden" name="location" value="{{data[focus]._id}}" readonly />
-                        <input type="file" id="fileBrowse" name="userPhoto" onchange="upload.submit()" style="display: none;"/>
-                    </form>
-                    <img src="/assets/uploadButton.png" id="uploadButton" ng-click="photoUpload()" style="cursor: pointer;"/>
-
-                </div>
-                <div class="thumbnail" ng-repeat="photo in photos">
-                    <img ng-src="{{photo.filename}}?dim=200x100" ng-click="toggleModal('lightbox',[$index])" style="cursor: pointer;" />
-                </div>                    
-            </div>
--->
         </div>
 
         <!-- Leaflet.js -->
         <script src="lib/leaflet/dist/leaflet.js"></script>
+
+        <!-- Stamen -->
+        <script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.3.0"></script>
 
         <!-- application -->
         <script src="js/app.js"></script>
