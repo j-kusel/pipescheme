@@ -8,9 +8,6 @@
 
     </div>
     <div class="thumbnail" ng-repeat="photo in photos">
-    <!--        <img ng-src="{{photo.filename}}?dim=200x100" ng-click="toggleModal('lightbox',{photoIndex:$index})" style="cursor: pointer;" />
--->
-<img ng-src="{{photo.filename}}?dim=200x100" ng-click="lightbox({formtype:'lightbox',args:{photos:photos, photoIndex:$index}})" style="cursor: pointer;" />
-        
+        <img ng-src="{{photo.filename}}?dim=200x100" ng-click="lightbox({formtype:'lightbox',args:{photos:photos, photoIndex:$index}})" style="cursor: pointer;" /> 
     </div>
 </div>
