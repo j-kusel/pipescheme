@@ -7,7 +7,7 @@ angular.module('pipeScheme')
                 focus: '='
             },
             link: link,
-            template: '<div id="map" style="width: 100%; height: 350px; z-index: 1"></div>'
+            template: '<div id="map" style="width: 100%; height: 320px; z-index: 1"></div>'
         };
 
         function link (scope, element, attrs) {
@@ -28,7 +28,6 @@ angular.module('pipeScheme')
 
             var OrangeIcon = L.Icon.extend({
                 options: {
-                    //iconSize: [25, 41],
                     iconAnchor: [12, 40]
                 }
             })

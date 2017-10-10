@@ -100,12 +100,27 @@
                 <p>{{ data[focus].IYEAR }}</p>
                 -->
             </div>
-            <ul id="tabs">
-                <li>provider</li>
-                <li style="opacity: .2;">|</li>
-                <li>gallery</li>
-            </ul>
-            <ps-Gallery focus="{{ focus }}" upload="photoUpload()" lightbox="toggleModal(formtype, args)"></ps-Gallery>
+            <div id="content">
+                <ul id="tabs">
+                    <li ng-click="tabFocus('provider')">provider</li>
+                    <li style="opacity: .2;">|</li>
+                    <li ng-click="tabFocus('gallery')">gallery</li>
+                </ul>
+                <ps-Gallery 
+                    ng-show="tabs['gallery']" 
+                    focus="{{ focus }}" 
+                    upload="photoUpload()" 
+                    lightbox="toggleModal(formtype, args)">        
+                </ps-Gallery>
+                <div id="provider" ng-show="tabs['provider']">
+                    <h3>{{ data[focus].NAME }}</h3>
+                    <p>{{ data[focus].OPERATOR_STREET_ADDRESS }}</p>
+                    <p>{{ data[focus].OPERATOR_CITY_NAME }}, {{ data[focus].OPERATOR_STATE_ABBREVIATION }} {{ data[focus].OPERATOR_POSTAL_CODE }}</p>
+                    <br>
+                    <p>report authorized by {{ data[focus].AUTHORIZER_NAME }}, {{ data[focus].AUTHORIZER_TITLE }}</p>
+                    <p><a href="mailto:{{ data[focus].AUTHORIZER_EMAIL }}">{{ data[focus].AUTHORIZER_EMAIL }}</a></p>
+                </div> 
+            </div>
         </div>
 
         <!-- Leaflet.js -->

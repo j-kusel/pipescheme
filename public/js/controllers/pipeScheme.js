@@ -29,6 +29,11 @@ angular.module('pipeScheme')
             $scope.year = 'all';
             $scope.focus = '';
 
+            $scope.tabs = {
+                gallery: true,
+                provider: false
+            };
+
             $scope.query = {
                 state: $scope.state,
                 fatal: $scope.fatal,
@@ -75,6 +80,11 @@ angular.module('pipeScheme')
             $scope.modalArgs = args;
             $scope.modalShow = !$scope.modalShow; 
         };
+
+        $scope.tabFocus = function (tabSelect) {
+            for (var tab in $scope.tabs) $scope.tabs[tab] = false;
+            $scope.tabs[tabSelect] = true;
+        }
 
         $scope.photoUpload = function () {
             console.log('does the function work?');

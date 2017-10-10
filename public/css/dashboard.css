@@ -11,7 +11,7 @@ body {
   margin: 0px;
   z-index: 40;
   background-color: #111111;
-  box-shadow: 10px 3px 20px black;
+  box-shadow: 0px 3px 20px black;
   border-width: 1px;
   border: #EEEEEE; }
   #headbar #title {
@@ -90,7 +90,6 @@ body {
 #main {
   top: 25px; }
   #main #map {
-    box-shadow: 10px 3px 15px black inset;
     margin-bottom: 10px; }
     #main #map a {
       appearance: none;
@@ -101,7 +100,7 @@ body {
   #main .info {
     width: 80%;
     margin: 0px;
-    padding: 15px 3px 3px 40px; }
+    padding: 5px 3px 3px 40px; }
     #main .info li {
       display: inline;
       margin: 0px;
@@ -182,31 +181,65 @@ form input[type="submit"], form input[type="file"] {
   width: 40%;
   float: left; }
 
-#tabs {
+#content {
   position: relative;
+  display: inline-block;
   float: left;
-  height: 50px; }
-
-#gallery {
-  position: relative;
-  float: left;
-  max-width: 50%;
-  min-width: 40%;
-  height: 320px;
-  margin: 1.5em;
-  padding: 5px;
-  border: 1px solid rgba(16, 16, 16, 0.3);
-  overflow-y: scroll; }
-  #gallery .thumbnail {
-    display: inline;
-    width: auto; }
-    #gallery .thumbnail span {
-      display: inline-block;
-      height: 100px;
-      vertical-align: middle;
-      padding: 0px 15px;
+  width: 60%; }
+  #content #tabs {
+    display: inline-block;
+    width: 100%;
+    margin: 0px;
+    padding: 5px 0px 0px 0px; }
+    #content #tabs li {
+      position: relative;
+      display: inline;
+      float: left;
+      padding-left: 20px;
       font-family: 'Lato', sans-serif;
-      color: #111111; }
+      color: #111111;
+      opacity: .7;
+      cursor: pointer; }
+      #content #tabs li:hover {
+        opacity: 1.0; }
+  #content #gallery {
+    position: relative;
+    float: left;
+    clear: left;
+    width: 95%;
+    height: 240px;
+    padding: 5px;
+    border-top: 1px solid rgba(16, 16, 16, 0.3);
+    overflow-y: scroll; }
+    #content #gallery .thumbnail {
+      display: inline;
+      width: auto; }
+      #content #gallery .thumbnail span {
+        display: inline-block;
+        height: 100px;
+        vertical-align: middle;
+        padding: 0px 15px;
+        font-family: 'Lato', sans-serif;
+        color: #111111; }
+  #content #provider {
+    color: #111111;
+    border-top: 1px solid rgba(16, 16, 16, 0.3);
+    padding-top: 5px;
+    width: 90%; }
+    #content #provider h3 {
+      padding: 0px;
+      margin: 0px;
+      font-family: 'Archivo Black', sans-serif; }
+    #content #provider p {
+      padding: 0px;
+      margin: 0px;
+      font-family: 'Lato', sans-serif; }
+    #content #provider a {
+      text-decoration: none;
+      color: #111111;
+      opacity: 0.7; }
+      #content #provider a:hover {
+        opacity: 1.0; }
 
 #upload input {
   margin: 0px; }

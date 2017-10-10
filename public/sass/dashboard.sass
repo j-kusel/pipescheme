@@ -14,7 +14,7 @@ body
   margin: 0px
   z-index: 40
   background-color: #111111
-  box-shadow: 10px 3px 20px black
+  box-shadow: 0px 3px 20px black
   border-width: 1px
   border: #EEEEEE
 
@@ -108,9 +108,7 @@ body
   top: 25px
 
   #map
-    box-shadow: 10px 3px 15px black inset
     margin-bottom: 10px
-
     a
       appearance: none
       -webkit-appearance: none
@@ -119,12 +117,10 @@ body
 
       color: orange
 
-
   .info
     width: 80%
     margin: 0px
-    padding: 15px 3px 3px $leftpad
-
+    padding: 5px 3px 3px $leftpad
 
     li
       display: inline
@@ -138,6 +134,7 @@ body
     font-family: 'Archivo Black', sans-serif
     font-size: 5em
     padding: 0px 30px 0px $leftpad
+
 
   #narrative
     margin: 0px
@@ -217,34 +214,78 @@ form
   width: 40%
   float: left
 
-#tabs
+#content
   position: relative
+  display: inline-block
   float: left
-  height: 50px
+  width: 60%
 
-#gallery
-  position: relative
-  //display: inline
-  float: left
-  max-width: 50%
-  min-width: 40%
-  height: 320px
-  margin: 1.5em
-  padding: 5px
-  border: 1px solid rgba(16, 16, 16, .3)
-  overflow-y: scroll
+  #tabs
+    display: inline-block
+    width: 100%
+    margin: 0px
+    padding: 5px 0px 0px 0px
 
-  .thumbnail
-    display: inline
-    width: auto
-
-    span
-      display: inline-block
-      height: 100px
-      vertical-align: middle
-      padding: 0px 15px
+    li
+      position: relative
+      display: inline
+      float: left
+      padding-left: 20px
       font-family: 'Lato', sans-serif
       color: #111111
+      opacity: .7
+      cursor: pointer
+
+      &:hover
+        opacity: 1.0
+
+  #gallery
+    position: relative
+    //display: inline
+    float: left
+    clear: left
+    width: 95%
+    height: 240px
+    //margin: 1.5em
+    padding: 5px
+    border-top: 1px solid rgba(16, 16, 16, .3)
+    overflow-y: scroll
+
+    .thumbnail
+      display: inline
+      width: auto
+
+      span
+        display: inline-block
+        height: 100px
+        vertical-align: middle
+        padding: 0px 15px
+        font-family: 'Lato', sans-serif
+        color: #111111
+
+  #provider
+    color: #111111
+    border-top: 1px solid rgba(16, 16, 16, .3)
+    padding-top: 5px
+    width: 90%
+
+    h3
+      padding: 0px
+      margin: 0px
+      font-family: 'Archivo Black', sans-serif
+
+    p
+      padding: 0px
+      margin: 0px
+      font-family: 'Lato', sans-serif
+
+    a
+      text-decoration: none
+      color: #111111
+      opacity: 0.7
+
+      &:hover
+        opacity: 1.0
 
 #upload
   input
