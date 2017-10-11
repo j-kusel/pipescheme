@@ -9,7 +9,10 @@ const Schema = mongoose.Schema;
 const AccidentSchema = new Schema({
     REPORT_RECEIVED_DATE: Date,
     IYEAR: Number,
-    REPORT_NUMBER: Number,
+    REPORT_NUMBER: {
+        type: Number,
+        required: true
+    },
     SUPPLEMENTAL_NUMBER: Number,
     REPORT_TYPE: String,
     OPERATOR_ID: Number,
@@ -984,9 +987,13 @@ const AccidentSchema = new Schema({
         required: false
     },
     NARRATIVE: String
+}, {
+    autoIndex: false
 });
 
-mongoose.model('Accident', AccidentSchema);
+mongoose.model('Accident', AccidentSchema).on('index', function (error) {
+    console.log('indexing error: ' + error.message);
+});
 
 
 
