@@ -64,6 +64,28 @@ exports.signup = function(req, res, next) {
     }
 };
 
+exports.saveOAuthUserProfile = function(req, profile, done) {
+    User.findOne({
+        provider: profile.provider,
+        providerId: profile.providerId
+    }, (err, user) => {
+        if (err) {
+            return done(err);
+        } else {
+            if (!user) {
+                const newUser = new User(profile);
+                newUser.username = profile.username || ((profile.email) ? profile.email.split('\'')[0] : '');
+
+                newUser.save((err) => {
+                    return done(err, newUser);
+                });
+            } else {
+                return done(err, user);
+            }
+        }
+    });
+};
+
 exports.logout = function(req, res) {
     req.logout();
     res.redirect('/');

@@ -15,6 +15,15 @@ module.exports = (function(app) {
                 failureFlash: true
             }));
 
+    app.get('/oauth/facebook', passport.authenticate('facebook', {
+            failureRedirect: '/'
+        }));
+
+    app.get('/oauth/facebook/callback', passport.authenticate('facebook', {
+            failureRedirect: '/',
+            successRedirect: '/'
+        }));
+
     app.route('/logout')
         .get(users.logout);
 

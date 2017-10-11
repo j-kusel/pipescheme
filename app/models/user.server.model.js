@@ -8,12 +8,12 @@ const UserSchema = new Schema({
     email: {
         type: String,
         match: /.+\@.+\..+/,
-        required: 'Enter a valid email address.'
+        required: false // 'Enter a valid email address.'
     },
     password: {
         type: String,
         trim: true,
-        required: true,
+        required: false,
         validate: [
             (password) => {
                 return password.length >= 6;
