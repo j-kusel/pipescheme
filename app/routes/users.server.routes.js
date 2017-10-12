@@ -24,6 +24,15 @@ module.exports = (function(app) {
             successRedirect: '/'
         }));
 
+    app.get('/oauth/twitter', passport.authenticate('twitter', {
+            failureRedirect: '/'
+        }));
+
+    app.get('/oauth/twitter/callback', passport.authenticate('twitter', {
+            failureRedirect: '/',
+            successRedirect: '/'
+        }));
+
     app.route('/logout')
         .get(users.logout);
 

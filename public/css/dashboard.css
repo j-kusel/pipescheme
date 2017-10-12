@@ -154,6 +154,12 @@ body {
     opacity: 0.75; }
     #modal div a:hover {
       opacity: 1.0; }
+  #modal div .oauth {
+    display: inline-block;
+    float: right;
+    margin: 5px 5px 5px 0px;
+    opacity: 1.0;
+    height: 20px; }
 
 form input[type="text"], form input[type="password"] {
   margin: 5px 50px;
@@ -175,6 +181,7 @@ form input[type="submit"], form input[type="file"] {
   -apple-appearance: none;
   -moz-appearance: none;
   position: relative;
+  height: 20px;
   float: right;
   cursor: pointer;
   margin: 5px 56px 30px 0px;
