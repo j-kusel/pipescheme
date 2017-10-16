@@ -1,7 +1,11 @@
 var csv = require('../../config/csv');         // get csv parser
 var fs = require('fs');
+var http = require('http');
 const googleAPI = require('../../config/env/googleAPI');    // get API key
 const config = require('../../config/config.js');
+const PHMSA_FLAGGED_INCIDENTS_URL = 'http://phmsa.dot.gov/staticfiles/PHMSA/DownloadableFiles/Pipeline/PHMSA_Pipeline_Safety_Flagged_Incidents.zip';
+const PHMSA_FLAGGED_INCIDENTS_FILEPATH = 'public/csv/jan2010-present';
+
 //const uploader = require('../../config/multer.js')(config.fileUploads); 
 var formidable = require('formidable');
 var util = require('util');
@@ -25,9 +29,21 @@ function mkdirCheck(path, mask, callback) {
 }
 
 exports.update = function(req, res, next) {
-    csv.csvStream('public/csv/jan2010-present.csv', 'Accident');
-    // USE FLASH FOR SUCCESS MESSAGE
-    res.render('index');
+    csv.downloader(PHMSA_FLAGGED_INCIDENTS_URL, PHMSA_FLAGGED_INCIDENTS_FILEPATH,
+        function (err) {
+            if (!err) {
+                var sheets = {
+                    GTGGUNGS: 'public/csv/jan2010-present/gtggungs2010toPresent.xlsx',
+                    GD: 'public/csv/jan2010-present/gd2010toPresent.xlsx',
+                    HL: 'public/csv/jan2010-present/hl2010toPresent.xlsx',
+                    LNG: 'public/csv/jan2010-present/lng2011toPresent.xlsx'
+                }
+                csv.xlsxStream(sheets, 1, 'Accident');
+                // err ? console.log(err) : csv.csvStream(PHMSA_FLAGGED_INCIDENTS_FILEPATH + '.csv', 'Accident');
+                // USE FLASH FOR SUCCESS MESSAGE
+            }
+            res.render('index');
+        });
 };
 
 exports.uploadPhoto = function(req, res, next) {

@@ -42,11 +42,14 @@
     "mongoose": "^4.12.1",
     "morgan": "^1.9.0",
     "multer": "^1.3.0",
+    "node-xlsx": "^0.11.0",
     "passport": "^0.4.0",
     "passport-facebook": "^2.1.1",
     "passport-local": "^1.0.0",
     "passport-twitter": "^1.0.4",
-    "quickthumb": "0.0.12"
+    "quickthumb": "0.0.12",
+    "request": "^2.83.0",
+    "unzip": "^0.1.11"
   },
   "devDependencies": {
     "gulp": "^3.9.1",

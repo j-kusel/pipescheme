@@ -975,7 +975,7 @@ const AccidentSchema = new Schema({
     },
     PREPARER_FAX: {
         type: Number,
-        set: numParser
+        set: numParser 
     },
     PREPARED_DATE: Date,                            // PARSE THIS
     AUTHORIZER_NAME: String,
@@ -986,7 +986,8 @@ const AccidentSchema = new Schema({
         // match: /.+\@.+\..+/,                     // GET A BETTER VALIDATOR
         required: false
     },
-    NARRATIVE: String
+    NARRATIVE: String,
+    TYPE: String
 }, {
     autoIndex: false
 });
