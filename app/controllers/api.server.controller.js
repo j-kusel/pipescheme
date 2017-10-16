@@ -33,10 +33,24 @@ exports.update = function(req, res, next) {
         function (err) {
             if (!err) {
                 var sheets = {
-                    GTGGUNGS: 'public/csv/jan2010-present/gtggungs2010toPresent.xlsx',
-                    GD: 'public/csv/jan2010-present/gd2010toPresent.xlsx',
-                    HL: 'public/csv/jan2010-present/hl2010toPresent.xlsx',
-                    LNG: 'public/csv/jan2010-present/lng2011toPresent.xlsx'
+                    GTGGUNGS: [
+                        'public/csv/jan2010-present/gtgg1986to2001.xlsx',
+                        'public/csv/jan2010-present/gtgg2002to2009.xlsx',
+                        'public/csv/jan2010-present/gtggungs2010toPresent.xlsx'
+                    ],
+                    GD: [
+                        'public/csv/jan2010-present/gd1986tofeb2004.xlsx',
+                        'public/csv/jan2010-present/gdmar2004to2009.xlsx',
+                        'public/csv/jan2010-present/gd2010toPresent.xlsx'
+                    ],
+                    HL: [
+                        'public/csv/jan2010-present/hl1986to2001.xlsx',
+                        'public/csv/jan2010-present/hl2002to2009.xlsx',
+                        'public/csv/jan2010-present/hl2010toPresent.xlsx'
+                    ],
+                    LNG: [
+                        'public/csv/jan2010-present/lng2011toPresent.xlsx'
+                    ]
                 }
                 csv.xlsxStream(sheets, 1, 'Accident');
                 // err ? console.log(err) : csv.csvStream(PHMSA_FLAGGED_INCIDENTS_FILEPATH + '.csv', 'Accident');
