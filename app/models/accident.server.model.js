@@ -2,12 +2,20 @@
 var boolSetter = function(bool) {return (bool==='YES' || bool==='UNKNOWN');};
 var numSetter = function(num) {return (num) ? parseInt(num) : 0;};
 var numParser = function(num) {return num.replace(/[-\s\.\/\(\)]/g, '');};
+var dateSetter = function (date) {
+    if (!date) {
+        return null;
+    }
+    return new Date((date - (25567 + 2))*86400*1000);};
 
 var mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const AccidentSchema = new Schema({
-    REPORT_RECEIVED_DATE: Date,
+    REPORT_RECEIVED_DATE: {
+        type: Date,
+        set: dateSetter
+    },
     IYEAR: Number,
     REPORT_NUMBER: {
         type: Number,
@@ -24,7 +32,10 @@ const AccidentSchema = new Schema({
         type: Number,
         set: numParser
     },
-    LOCAL_DATETIME: String,                 // PARSE THIS
+    LOCAL_DATETIME: {
+        type: Date,
+        set: dateSetter
+    },                 
     LOCATION_STREET_ADDRESS: String,
     LOCATION_CITY_NAME: String,
     LOCATION_COUNTY_NAME: String,
@@ -33,7 +44,10 @@ const AccidentSchema = new Schema({
     LOCATION_LATITUDE: Number,              // PROBABLY PARSE THIS
     LOCATION_LONGITUDE: Number,             // PROBABLY PARSE THIS
     NRC_RPT_NUM: String,                    // GET A BETTER VALIDATOR
-    NRC_RPT_DATETIME: String,               // PARSE THIS
+    NRC_RPT_DATETIME: {
+        type: Date,
+        set: dateSetter
+    },               // PARSE THIS
     INCIDENT_RESULTED: String,
     COMMODITY_RELEASED_TYPE: String,
     COMMODITY_DETAILS: String,
@@ -93,8 +107,14 @@ const AccidentSchema = new Schema({
         set: boolSetter
     },
     SHUTDOWN_EXPLAIN: String,
-    SHUTDOWN_DATETIME: String,              // PARSE THIS
-    RESTART_DATETIME: String,               // PARSE THIS
+    SHUTDOWN_DATETIME: {
+        type: Date,
+        set: dateSetter
+    },
+    RESTART_DATETIME: {
+        type: Date,
+        set: dateSetter
+    },
     STILL_SHUTDOWN_IND: {
         type: Boolean,
         set: boolSetter
@@ -108,8 +128,14 @@ const AccidentSchema = new Schema({
         set: boolSetter
     },
     NUM_PUB_EVACUATED: Number,
-    INCIDENT_IDENTIFIED_DATETIME: String,   // PARSE THIS
-    ON_SITE_DATETIME: String,               // PARSE THIS
+    INCIDENT_IDENTIFIED_DATETIME: {
+        type: Date,
+        set: dateSetter
+    },
+    ON_SITE_DATETIME: {
+        type: Date,
+        set: dateSetter
+    },
     FEDERAL: {
         type: Boolean,
         set: boolSetter
@@ -439,7 +465,10 @@ const AccidentSchema = new Schema({
         type: Boolean,
         set: boolSetter
     },
-    COR_HYDROTEST_LEAK_SURVEY_DATE: Date,           // GET A BETTER VALIDATOR
+    COR_HYDROTEST_LEAK_SURVEY_DATE: {
+        type: Date,
+        set: dateSetter
+    },
     COR_HYDROTEST_CONDUCTED_IND: {
         type: Boolean,
         set: boolSetter
@@ -474,7 +503,10 @@ const AccidentSchema = new Schema({
     },
     NF_EXTREME_WEATHER_DETAILS: String,
     EX_PARTY_TYPE: String,
-    EX_HYDROTEST_LEAK_SURVEY_DATE: String,            // GET A BETTER VALIDATOR
+    EX_HYDROTEST_LEAK_SURVEY_DATE: {
+        type: Date,
+        set: dateSetter
+    },
     EX_HYDROTEST_CONDUCTED_IND: {
         type: Boolean,
         set: boolSetter
@@ -594,7 +626,10 @@ const AccidentSchema = new Schema({
         set: boolSetter
     },
     OSF_OTHER_WEATHER_DETAILS: String,
-    OSF_HYDROTEST_LEAK_SURVEY_DATE: Date,               // PARSE THIS
+    OSF_HYDROTEST_LEAK_SURVEY_DATE: {
+        type: Date,
+        set: dateSetter
+    },
     OSF_HYDROTEST_CONDUCTED_IND: {
         type: Boolean,
         set: boolSetter
@@ -977,7 +1012,10 @@ const AccidentSchema = new Schema({
         type: Number,
         set: numParser 
     },
-    PREPARED_DATE: Date,                            // PARSE THIS
+    PREPARED_DATE: {
+        type: Date,
+        set: dateSetter
+    },
     AUTHORIZER_NAME: String,
     AUTHORIZER_TITLE: String,
     AUTHORIZER_TELEPHONE: String,

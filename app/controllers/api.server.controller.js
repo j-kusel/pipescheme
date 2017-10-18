@@ -34,18 +34,18 @@ exports.update = function(req, res, next) {
             if (!err) {
                 var sheets = {
                     GTGGUNGS: [
-                        'public/csv/jan2010-present/gtgg1986to2001.xlsx',
-                        'public/csv/jan2010-present/gtgg2002to2009.xlsx',
+                        //'public/csv/jan2010-present/gtgg1986to2001.xlsx',
+                        //'public/csv/jan2010-present/gtgg2002to2009.xlsx',
                         'public/csv/jan2010-present/gtggungs2010toPresent.xlsx'
-                    ],
+                    ], 
                     GD: [
-                        'public/csv/jan2010-present/gd1986tofeb2004.xlsx',
-                        'public/csv/jan2010-present/gdmar2004to2009.xlsx',
+                        //'public/csv/jan2010-present/gd1986tofeb2004.xlsx',
+                        //'public/csv/jan2010-present/gdmar2004to2009.xlsx',
                         'public/csv/jan2010-present/gd2010toPresent.xlsx'
                     ],
                     HL: [
-                        'public/csv/jan2010-present/hl1986to2001.xlsx',
-                        'public/csv/jan2010-present/hl2002to2009.xlsx',
+                        //'public/csv/jan2010-present/hl1986to2001.xlsx',
+                        //'public/csv/jan2010-present/hl2002to2009.xlsx',
                         'public/csv/jan2010-present/hl2010toPresent.xlsx'
                     ],
                     LNG: [
@@ -120,11 +120,12 @@ exports.accidents = function(req, res, next) {
     };
     if (req.query.fatal == 'true') query.FATALITY_IND = true;
     if (req.query.year && req.query.year !== 'all') query.IYEAR = req.query.year;
-
     Accident.find(query, (err, accidents) => {
         if (err) {
             return next(err);
         }
+        console.log('accidents');
+        console.log(accidents);
         res.json(accidents);
     })
     .limit(100); // parseInt(req.params.limit));

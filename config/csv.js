@@ -33,13 +33,17 @@ exports.xlsxStream = function(filePaths, index, model) {
         for (var s = 0; s < filePaths[accidentType].length; s++) {
             console.log('on ' + accidentType + filePaths[accidentType][s]);
             var sheet = xlsx.parse(filePaths[accidentType][s])[index];
-            var headers = sheet['data'].shift();
+            var headers = sheet['data'][0];
+            console.log(headers);
             for (var r = 1; r < sheet['data'].length; r++) {
                 var dbModel = mongoose.model(model)();
                 var row = sheet['data'][r];
                 for (var col = 0; col < row.length; col++) {
+                    if (headers[col] == 'LOCAL_DATETIME') {
+                        console.log(new Date((row[col] - (25567 + 2))*86400*1000));
+                    }
                     dbModel.set(headers[col], row[col]);
-                }
+                } 
                 //var report = dbModel.get('REPORT_NUMBER').toString();
                 //var supplemental = dbModel.get('SUPPLEMENTAL_NUMBER').toString();
                 //dbModel.set('REPORT_NUMBER', parseInt(report + supplemental));
