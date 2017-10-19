@@ -1,11 +1,12 @@
     <div id="photoFocus">
-    	<span ng-click="advance(-1)">&#171;</span>
-        <img id="photoLight" ng-src="{{ args['photos'][args['photoIndex']].filename }}" ng-click="advance(1)"/>
-        <span ng-click="advance(1)">&#187;</span>
+    	<span>
+    		<span ng-click="advance(-1)">&#171;</span>
+        	<img id="photoLight" ng-src="{{ args['photos'][args['photoIndex']].filename }}" ng-click="advance(1)"/>
+        	<span ng-click="advance(1)">&#187;</span>
+        </span>
     </div>
 
-    <div id="photoText">
-        <p>yaaaaay we got here {{ args['photoIndex'] }}</p>
-        <p>photos made it too?</p><!--{{ args['photos'] }}</p>-->
-    </div>
+    <!-- <div id="photoText"> -->
+        <p>uploaded on {{ args['photos'][args['photoIndex']].uploadDate | date : longdate }}</p>
+    <!-- </div> -->
 

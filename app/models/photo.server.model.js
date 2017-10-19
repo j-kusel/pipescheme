@@ -10,7 +10,11 @@ const PhotoSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Accident'
     },
-    filename: String
+    filename: String,
+    uploadDate: {
+    	type: Date,
+    	default: Date.now
+    }
 });
 
 mongoose.model('Photo', PhotoSchema);

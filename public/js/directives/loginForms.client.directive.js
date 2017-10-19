@@ -18,4 +18,15 @@ angular.module('pipeScheme')
             },
             templateUrl: "../../templates/signupForm.html"
         };
+    })
+    .directive('psAccount', function () {
+        return {
+            restrict: 'E',
+            scope: {
+                flashmsg: '=',
+                formtype: '@',
+                user: '='
+            },
+            templateUrl: "../../templates/account.html"
+        };
     });

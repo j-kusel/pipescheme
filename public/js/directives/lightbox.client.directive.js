@@ -11,6 +11,7 @@ angular.module('pipeScheme')
 
         function link (scope, element, attrs) {
             scope.advance = function (direction) {
+                console.log(scope.args['photos'][0].location);
                 var newIndex = scope.args['photoIndex'] + direction;
                 if (newIndex < 0) {
                     scope.args['photoIndex'] = scope.args['photos'].length - 1;
