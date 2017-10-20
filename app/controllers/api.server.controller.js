@@ -71,6 +71,7 @@ exports.uploadPhoto = function(req, res, next) {
         form.parse(req, function (err, fields, files) {
             var oldpath = files.userPhoto.path;
             req.body.location = fields.location;
+            req.body.owner = fields.owner;
             var newdir = form.uploadDir + '/' + req.body.location;
             req.body.filename = '/' + filepath.split('/').pop() + '/' + req.body.location + '/' + req.body.photo_id + '.jpg';
             var newpath = filepath + '/' + req.body.location + '/' + req.body.photo_id + '.jpg';
@@ -140,7 +141,7 @@ exports.photos = function(req, res, next) {
 */
     var query = {};
     if (req.query.location) query.location = req.query.location;
-    if (req.query.owner) query._id = req.query.owner;
+    if (req.query.owner) query.owner = req.query.owner;
     Photo
         .find(query, (err, photos) => {
             if (err) {

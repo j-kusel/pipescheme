@@ -47,6 +47,7 @@
     "passport-facebook": "^2.1.1",
     "passport-local": "^1.0.0",
     "passport-twitter": "^1.0.4",
+    "perfect-scrollbar": "^1.1.0",
     "quickthumb": "0.0.12",
     "request": "^2.83.0",
     "unzip": "^0.1.11"

@@ -19,7 +19,7 @@ angular.module('pipeScheme')
             templateUrl: "../../templates/signupForm.html"
         };
     })
-    .directive('psAccount', function () {
+    .directive('psAccount', ['PhotoService', function (PhotoService) {
         return {
             restrict: 'E',
             scope: {
@@ -27,6 +27,15 @@ angular.module('pipeScheme')
                 formtype: '@',
                 user: '='
             },
+            link: function (scope, element, attrs) {
+                if (scope.user) {
+                    PhotoService.API.query({owner: scope.user._id})
+                        .$promise
+                        .then((photos) => {scope.photos = photos;});
+                }
+            },
             templateUrl: "../../templates/account.html"
         };
-    });
+    }]);
+
+

@@ -15,10 +15,12 @@ angular.module('pipeScheme')
 
         function link (scope, element, attrs) {
             console.log(scope.uploadAuth);
+            if (window.PerfectScrollbar) {
+                scope.ps = new PerfectScrollbar('#gallery', {});
+            }
             scope.$on('gallery.update', function (event, photos) {
-                console.log('gallery updated');
-                console.log(photos);
                 scope.photos = photos;
+                if (scope.ps) scope.ps.update();
             });
 
             scope.test = function () {

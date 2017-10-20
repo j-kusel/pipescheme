@@ -1,0 +1,8 @@
+<div id="account">
+	<p id="name">{{ user.firstName }} {{ user.lastName }}</p>
+	<p>pipespotting since {{ user.created }}</p>
+	<p>{{ scope.photos.length }} photos:</p>
+	<div id="usergallery" ng-repeat="photo in photos">
+		<img ng-src="{{photo.filename}}?dim=200x100">
+	</div>
+</div>

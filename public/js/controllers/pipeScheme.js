@@ -28,6 +28,9 @@ angular.module('pipeScheme')
             $scope.fatal = false;
             $scope.year = 'all';
             $scope.focus = '';
+            $scope.scrollbar = new PerfectScrollbar('#narrative', {
+                scrollYMarginOffset: 5
+            });
 
             $scope.tabs = {
                 gallery: true,
@@ -42,6 +45,7 @@ angular.module('pipeScheme')
 
             $scope.$watch(function(scope) { return scope.focus; },
                 function () {
+                    $scope.scrollbar.update();
                     PhotoService.API
                         .query({
                             location: $scope.focus

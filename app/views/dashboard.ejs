@@ -4,9 +4,11 @@
         <title>dashboard</title>
         <link rel="stylesheet" href="css/ngCloak.css" />
         <link rel="stylesheet" href="lib/leaflet/dist/leaflet.css" />
+        <link rel="stylesheet" href="css/perfect-scrollbar.css" />
         <link rel="stylesheet" href="css/dashboard.css" />
         <script type="text/javascript" src="bower/angular/angular.js"></script>
         <script type="text/javascript" src="bower/angular-resource/angular-resource.js"></script>
+        <script type="text/javascript" src="lib/perfect-scrollbar/dist/perfect-scrollbar.js"></script>
     </head>
     <body ng-app="app" ng-controller="PipeController" ng-init="user = <%= JSON.stringify(user) %>; flashmsg = <%= flashmsg %>">
         <div id="headbar">
@@ -62,7 +64,7 @@
                 <!-- IF THAT DOESN'T WORK SWITCH BACK TO TEMPLATE TAG -->
                 <ps-signin ng-if="formtype==='signin'"></ps-signin>
                 <ps-signup ng-if="formtype==='signup'"></ps-signup>
-                <ps-account ng-if="formtype==='account'"></ps-account>
+                <ps-account user="user" ng-if="formtype==='account'"></ps-account>
                 <ps-lightbox id="lightbox" ng-if="formtype==='lightbox'" args=modalArgs></ps-lightbox>
                 <div ng-if="formtype==='about'" ng-include="'templates/about.html'"></div>               
             </ps-modal>
