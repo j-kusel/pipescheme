@@ -33,7 +33,7 @@ exports.signup = function(req, res, next) {
                 const message = getErrorMessage(err);
 
                 req.flash('error', message);
-                return res.redirect('/signup');
+                return res.redirect('/');
             }
             req.login(user, (err) => {
                 if (err) return next(err);

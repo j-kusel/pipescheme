@@ -292,11 +292,20 @@ form input[type="submit"], form input[type="file"] {
     margin: 0px auto; }
 
 #account #name {
-  font-size: 2em; }
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 1.5em;
+  margin-bottom: 0px; }
 
 #account p {
-  float: right; }
+  text-align: right; }
 
 #account #usergallery {
-  max-width: 450px;
+  clear: both;
+  margin: 0px;
+  padding: 5px;
+  width: 440px;
   max-height: 250px; }
+  #account #usergallery div {
+    display: inline-block; }
+    #account #usergallery div img {
+      padding: 5px; }
