@@ -113,8 +113,6 @@ exports.savePhoto = function(req, res, next) {
 }
 
 exports.accidents = function(req, res, next) {
-    console.log('api hit.');
-    console.log(req.query);
     var Accident = mongoose.model('Accident');
     var query = {
         LOCATION_STATE_ABBREVIATION: req.params.state
@@ -125,8 +123,6 @@ exports.accidents = function(req, res, next) {
         if (err) {
             return next(err);
         }
-        console.log('accidents');
-        console.log(accidents);
         res.json(accidents);
     })
     .limit(100); // parseInt(req.params.limit));

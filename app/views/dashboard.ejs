@@ -41,14 +41,14 @@
 
             </div>
             <ul id="headmenu">
-                <div ng-if="user.firstName">
+                <div ng-if="user.firstName || user.email">
                     <li>welcome back {{ user.firstName }}!</li>
                     <li style="opacity: .2;">|</li>
                     <li ng-click='toggleModal("account")' style="cursor: pointer;">account</li>
                     <li style="opacity: .2;">|</li>
                     <li onclick="window.location.href='/logout'" style="cursor: pointer;">logout</li>
                 </div>
-                <div ng-if="!user.firstName">
+                <div ng-if="!user.firstName && !user.email">
                     <li ng-click='toggleModal("signin")' style="cursor: pointer;">signin</li>
                     <li style="opacity: .2;">|</li>
                     <li ng-click='toggleModal("signup")' style="cursor: pointer;">signup</li>

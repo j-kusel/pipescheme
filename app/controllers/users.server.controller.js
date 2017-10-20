@@ -22,31 +22,12 @@ function getErrorMessage(err) {
     return message;
 };
 
-exports.renderSignin = function(req, res, next) {
-    if (!req.user) {
-        res.render('signin', {
-            flashmsg: req.flash('error') || req.flash('info')
-        });
-    } else {
-        return res.redirect('/');
-    }
-};
-
-exports.renderSignup = function(req, res, next) {
-    if (!req.user) {
-        res.render('signup', {
-            flashmsg: req.flash('error')
-        });
-    } else {
-        return res.redirect('/');
-    }
-};
-
 exports.signup = function(req, res, next) {
     if (!req.user) {
         const user = new User(req.body);
+        console.log('body');
+        console.log(req.body);
         user.provider = 'local';
-
         user.save((err) => {
             if (err) {
                 const message = getErrorMessage(err);

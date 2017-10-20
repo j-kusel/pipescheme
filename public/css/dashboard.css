@@ -223,7 +223,7 @@ form input[type="submit"], form input[type="file"] {
     float: left;
     clear: left;
     width: 95%;
-    height: 240px;
+    max-height: 225px;
     padding: 5px;
     border-top: 1px solid rgba(16, 16, 16, 0.3);
     overflow-y: scroll; }
@@ -290,3 +290,13 @@ form input[type="submit"], form input[type="file"] {
     text-align: center;
     padding: 0px;
     margin: 0px auto; }
+
+#account #name {
+  font-size: 2em; }
+
+#account p {
+  float: right; }
+
+#account #usergallery {
+  max-width: 450px;
+  max-height: 250px; }
