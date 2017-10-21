@@ -15,7 +15,6 @@ module.exports = function () {
 		const providerData = profile._json;
 		providerData.accessToken = accessToken;
 		providerData.refreshToken = refreshToken;
-		console.log(JSON.stringify(profile));
 
 		const providerUserProfile = {
 			firstName: profile.name.givenName,

@@ -306,6 +306,7 @@ form input[type="submit"], form input[type="file"] {
   width: 440px;
   max-height: 250px; }
   #account #usergallery div {
+    position: relative;
     display: inline-block; }
     #account #usergallery div img {
       padding: 5px; }

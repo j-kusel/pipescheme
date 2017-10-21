@@ -112,6 +112,24 @@ exports.savePhoto = function(req, res, next) {
     return res.redirect('/');
 }
 
+exports.deletePhoto = function(req, res, next) {
+    var Photo = mongoose.model('Photo');
+    Photo.findById(req.query._id, function(err, photo) {
+        if (req.user._id.toString() == photo.owner.toString()) {
+            var filename = photo.filename;
+            photo.remove()
+                .then(function (err) {
+                    if (err) {
+                        //
+                    } else {
+                        fs.unlink()
+                    }
+                });
+        }
+    });
+    return res.redirect(303, '/');
+}
+
 exports.accidents = function(req, res, next) {
     var Accident = mongoose.model('Accident');
     var query = {

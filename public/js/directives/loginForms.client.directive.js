@@ -33,6 +33,12 @@ angular.module('pipeScheme')
                         .$promise
                         .then((photos) => {scope.photos = photos;});
                 }
+
+                scope.deletePhoto = function (id) {
+                    PhotoService.API.delete({_id: id})
+                        .$promise
+                        .then(() => {console.log(Date.now());});
+                }
             },
             templateUrl: "../../templates/account.html"
         };

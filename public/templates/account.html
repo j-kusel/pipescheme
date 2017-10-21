@@ -4,6 +4,10 @@
 	<div id="usergallery">
 		<div ng-repeat="photo in photos">
 			<img ng-src="{{photo.filename}}?dim=200x100">
+			<div id="ugoptions">
+				<div ng-click="deletePhoto(photo._id)">&#187;</div>
+				<!-- <div ng-click="focusPhoto(photo._id)">&#128465;</div> -->
+			</div>
 		</div>
 	</div>
 </div>
