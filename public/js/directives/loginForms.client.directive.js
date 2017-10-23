@@ -19,7 +19,7 @@ angular.module('pipeScheme')
             templateUrl: "../../templates/signupForm.html"
         };
     })
-    .directive('psAccount', ['PhotoService', function (PhotoService) {
+    .directive('psAccount', ['PhotoService', '$rootScope', function (PhotoService, $rootScope) {
         return {
             restrict: 'E',
             scope: {
@@ -34,11 +34,16 @@ angular.module('pipeScheme')
                         .then((photos) => {scope.photos = photos;});
                 }
 
-                scope.deletePhoto = function (id) {
+                scope.deletePhoto = function (id, index) {
                     PhotoService.API.delete({_id: id})
                         .$promise
-                        .then(() => {console.log(Date.now());});
+                        .then(() => {
+                            scope.photos.splice(index, 1);
+                            $rootScope.$broadcast('focus.update')
+                        });
                 }
+
+
             },
             templateUrl: "../../templates/account.html"
         };

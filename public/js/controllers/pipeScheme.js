@@ -43,21 +43,22 @@ angular.module('pipeScheme')
                 year: $scope.year
             };
 
-            $scope.$watch(function(scope) { return scope.focus; },
-                function () {
-                    $scope.scrollbar.update();
-                    PhotoService.API
-                        .query({
-                            location: $scope.focus
-                        })
-                        .$promise
-                            .then(function (photos) {
-                                console.log(JSON.stringify(photos));
-                                $rootScope.$broadcast('gallery.update', photos);
-                                $rootScope.$broadcast('lightbox.update', photos);
-                            });
-                }
-            );
+            var focusUpdate = function () {
+                $scope.scrollbar.update();
+                PhotoService.API
+                    .query({
+                        location: $scope.focus
+                    })
+                    .$promise
+                        .then(function (photos) {
+                            console.log(JSON.stringify(photos));
+                            $rootScope.$broadcast('gallery.update', photos);
+                            $rootScope.$broadcast('lightbox.update', photos);
+                        });
+            }
+
+            $scope.$on('focus.update', focusUpdate);
+            $scope.$watch(function(scope) { return scope.focus; }, focusUpdate);
 
             AccidentService.update();
 
