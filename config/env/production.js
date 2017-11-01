@@ -2,7 +2,7 @@ const media = '/var/www';
 const auth = '/etc/auth';
 
 module.exports = {
-	port: 8080,
+	port: 8001,
 	db: 'mongodb://localhost:pipescheme',
 	fileUploads: media + '/pipescheme',
     sessionSecret: require(auth + '/sessionSecret.js'),
