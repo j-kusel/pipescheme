@@ -1,11 +1,12 @@
 const media = '/var/www';
-const oauth = '/etc/oauth';
+const auth = '/etc/auth';
 
 module.exports = {
 	port: 8080,
 	db: 'mongodb://localhost:pipescheme',
 	fileUploads: media + '/pipescheme',
-    sessionSecret: require(oauth + '/sessionSecret.js'),
-    facebook: require(oauth + '/facebookOAuth.js'),
-    twitter: require(oauth + '/twitterOAuth.js')
+    sessionSecret: require(auth + '/sessionSecret.js'),
+    facebook: require(auth + '/facebookOAuth.js'),
+    twitter: require(auth + '/twitterOAuth.js'),
+    googleKey: require(auth + '/googleAPI.js')
 };

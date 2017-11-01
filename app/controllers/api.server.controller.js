@@ -1,12 +1,11 @@
 var csv = require('../../config/csv');         // get csv parser
 var fs = require('fs');
 var http = require('http');
-const googleAPI = require('../../config/env/googleAPI');    // get API key
 const config = require('../../config/config.js');
+const googleAPI = config.googleAPI;    // get API key
 const PHMSA_FLAGGED_INCIDENTS_URL = 'http://phmsa.dot.gov/staticfiles/PHMSA/DownloadableFiles/Pipeline/PHMSA_Pipeline_Safety_Flagged_Incidents.zip';
 const PHMSA_FLAGGED_INCIDENTS_FILEPATH = 'public/csv/jan2010-present';
 
-//const uploader = require('../../config/multer.js')(config.fileUploads); 
 var formidable = require('formidable');
 var util = require('util');
 
