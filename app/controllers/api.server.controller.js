@@ -4,7 +4,7 @@ var http = require('http');
 const config = require('../../config/config.js');
 const googleAPI = config.googleAPI;    // get API key
 const PHMSA_FLAGGED_INCIDENTS_URL = 'http://phmsa.dot.gov/staticfiles/PHMSA/DownloadableFiles/Pipeline/PHMSA_Pipeline_Safety_Flagged_Incidents.zip';
-const PHMSA_FLAGGED_INCIDENTS_FILEPATH = 'public/csv/jan2010-present';
+const PHMSA_FLAGGED_INCIDENTS_FILEPATH = config.accidents;
 
 var formidable = require('formidable');
 var util = require('util');

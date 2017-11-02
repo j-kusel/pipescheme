@@ -8,5 +8,6 @@ module.exports = {
     sessionSecret: require(auth + '/sessionSecret.js'),
     facebook: require(auth + '/facebookOAuth.js'),
     twitter: require(auth + '/twitterOAuth.js'),
-    googleKey: require(auth + '/googleAPI.js')
+    googleKey: require(auth + '/googleAPI.js'),
+    accidents: '/var/www/accidents/PHMSA_accidents'
 };

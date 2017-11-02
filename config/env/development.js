@@ -5,5 +5,6 @@ module.exports = {
     sessionSecret: require('./sessionSecret.js'),
     facebook: require('./facebookOAuth.js'),
     twitter: require('./twitterOAuth.js'),
-    googleKey: require('./googleAPI')
+    googleKey: require('./googleAPI'),
+    accidents: 'public/csv/jan2010-present'
 };
