@@ -8,24 +8,27 @@ var csv = require('fast-csv'),
 
 exports.downloader = function (url, filePath, callback) {
     var file = fs.createWriteStream(filePath + '.zip', {flags: 'w'});
-    request({
-        url: 'http://phmsa.dot.gov/staticfiles/PHMSA/DownloadableFiles/Pipeline/PHMSA_Pipeline_Safety_Flagged_Incidents.zip',
-        method: 'GET',
-        encoding: null,
-        timeout: 10000,
-        followRedirect: true,
-        maxRedirects: 10
-    })
-        .on('error', (err) => {
-            file.close();
-            callback(err);
+    
+    file.on('open', function () {
+        request({
+            url: 'http://phmsa.dot.gov/staticfiles/PHMSA/DownloadableFiles/Pipeline/PHMSA_Pipeline_Safety_Flagged_Incidents.zip',
+            method: 'GET',
+            encoding: null,
+            timeout: 10000,
+            followRedirect: true,
+            maxRedirects: 10
         })
-        .pipe(file)
-        .on('close', () => {
-            console.log('downloaded!');
-            file = fs.createReadStream(filePath + '.zip').pipe(unzip.Extract({path: filePath}));
-            file.on('close', callback);
-        });
+            .on('error', (err) => {
+                file.close();
+                callback(err);
+            })
+            .pipe(file)
+            .on('close', () => {
+                console.log('downloaded!');
+                file = fs.createReadStream(filePath + '.zip').pipe(unzip.Extract({path: filePath}));
+                file.on('close', callback);
+            });
+    });
 };
 
 exports.xlsxStream = function(filePaths, index, model) {
