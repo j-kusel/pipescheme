@@ -1,0 +1,40 @@
+U.S. Natural Gas City Gate Price (Dollars per Thousand Cubic Feet)				
+
+Release Date:			09/29/2017 		
+Next Release Date:		10/30/2017 (Indexes verified on 09/29/2017 ) 	
+		
+Source:				Energy Information Administration 
+Available from Web Page:	http://tonto.eia.doe.gov/dnav/ng/ng_sum_lsum_dcu_nus_a.htm 		
+
+Excel File Name:		NG_SUM_LSUM_DCU_NUS_A.xls		
+
+
+
+CHAINED PRICE INDEX (CPI)
+
+Release Date:			N/A (Indexes verified 09/29/2017 ) 		
+Next Release Date:		N/A 
+
+Source:				Fiscal Year 2016 - Table 10.1 — Gross Domestic Product and Deflators Used in the Historical Tables: 1940–2020
+
+Available from Web Page:	http://www.gpo.gov/fdsys/ 
+				; BUDGET OF THE UNITED STATES GOVERNMENT 
+				; "Historical tables"
+				; Section 10 - Gross Domestic Product and Implicit Outlay Deflators "Table 10.1 - Gross Domestic Product and Deflators Used 			in the Historical Tables: 1940-2020"  
+Excel File Name: 		;"BUDGET-2016-TAB-11-1"  
+
+ 			OR
+
+				https://www.gpo.gov/fdsys/browse/collection.action?collectionCode=BUDGET&browsePath=Fiscal+Year+2016&searchPath=Fiscal+Year+2016&leafLevelBrowse=false&isCollapsed=false&isOpen=true&packageid=BUDGET-2016-TAB&ycord=407
+				; "Fiscal Year 2016"
+				; "Historical Tables"
+				; "Section 10 - Gross Domestic Product and Implicit Outlay Deflators" "Table 10.1 - Gross Domestic Product and Deflators Used 			in the Historical Tables: 1940-2020"
+Excel File Name: 		; "BUDGET-2016-TAB-11-1"  
+
+
+
+
+
+
+
+

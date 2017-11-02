@@ -11,7 +11,7 @@ exports.downloader = function (url, filePath, callback) {
     
     file.on('open', function () {
         request({
-            url: 'http://phmsa.dot.gov/staticfiles/PHMSA/DownloadableFiles/Pipeline/PHMSA_Pipeline_Safety_Flagged_Incidents.zip',
+            url: 'https://drive.google.com/open?id=1nlb2AipQkU6eNHwQmLCsGXCHvd5t41RW',
             method: 'GET',
             encoding: null,
             timeout: 10000,
