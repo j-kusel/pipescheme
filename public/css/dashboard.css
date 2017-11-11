@@ -312,10 +312,8 @@ form input[type="submit"], form input[type="file"] {
       padding: 5px; }
     #account #usergallery div #ugoptions div {
       position: absolute;
-      width: 16px;
-      height: 16px;
       bottom: 80px;
-      right: 20px;
+      right: 16px;
       background-color: #111111; }
       #account #usergallery div #ugoptions div p {
         color: orange;
