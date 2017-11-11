@@ -116,8 +116,7 @@ exports.deletePhoto = function(req, res, next) {
     Photo.findById(req.query._id, function(err, photo) {
         if (req.user._id.toString() == photo.owner.toString()) {
             var filename = photo.filename;
-            photo.remove()
-                .then(function (err) {
+            photo.remove(function (err) {
                     if (err) {
                         console.log('error deleting from database: ' + err);
                     } else {
