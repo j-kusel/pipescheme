@@ -121,7 +121,10 @@ exports.deletePhoto = function(req, res, next) {
                     if (err) {
                         //
                     } else {
-                        fs.unlink()
+                        fs.unlink(config.media + filename, function (err) {
+                            if (err) return console.log(err);
+                            console.log('file deleted');
+                        });
                     }
                 });
         }
