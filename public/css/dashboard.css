@@ -316,4 +316,6 @@ form input[type="submit"], form input[type="file"] {
       right: 14px; }
       #account #usergallery div #ugoptions div p {
         color: orange;
-        text-align: center; }
+        text-align: center;
+        padding: 0px 6px;
+        margin: auto; }
