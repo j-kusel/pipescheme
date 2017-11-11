@@ -3,7 +3,7 @@ const auth = '/etc/auth';
 
 module.exports = {
 	port: 8001,
-	db: 'mongodb://localhost:pipescheme',
+	db: 'mongodb://localhost/accidents',
 	fileUploads: media + '/pipescheme',
     sessionSecret: require(auth + '/sessionSecret.js'),
     facebook: require(auth + '/facebookOAuth.js'),
