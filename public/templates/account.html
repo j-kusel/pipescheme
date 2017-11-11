@@ -5,7 +5,7 @@
 		<div ng-repeat="photo in photos">
 			<img ng-src="{{photo.filename}}?dim=200x100">
 			<div id="ugoptions">
-				<div ng-click="deletePhoto(photo._id, $index)">&#10006;</div>
+				<div ng-click="deletePhoto(photo._id, $index)" style="cursor: pointer;"><p>&#10006;</p></div>
 				<!-- <div ng-click="focusPhoto(photo._id)">&#187;</div> -->
 			</div>
 		</div>
