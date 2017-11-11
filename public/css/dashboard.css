@@ -310,3 +310,7 @@ form input[type="submit"], form input[type="file"] {
     display: inline-block; }
     #account #usergallery div img {
       padding: 5px; }
+    #account #usergallery div #ugoptions div {
+      position: absolute;
+      bottom: 20px;
+      right: 180px; }
