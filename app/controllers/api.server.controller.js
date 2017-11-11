@@ -119,7 +119,7 @@ exports.deletePhoto = function(req, res, next) {
             photo.remove()
                 .then(function (err) {
                     if (err) {
-                        //
+                        console.log('error deleting from database: ' + err);
                     } else {
                         fs.unlink(config.media + filename, function (err) {
                             if (err) return console.log(err);
