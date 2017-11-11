@@ -20,10 +20,34 @@ function mkdirCheck(path, mask, callback) {
         if (err) {
             if (err.code == 'EEXIST') {
                 callback(null);
-            } else {
-                callback(err);
-            }
-        } else callback(null);
+            } else callback(err);
+        } else {
+            var Accident = mongoose.model('Accident');
+            var loc_full = path;
+            var loc_id = loc_full.split('/').pop();
+            console.log('popped: ' + loc_id);
+            Accident.findById(loc_id, function (err, accident) {
+                if (err) {
+                    console.log('error finding location');
+                } else {
+                    var writeToFile = {
+                        report: accident.REPORT_NUMBER.toString() + accident.SUPPLEMENTAL_NUMBER.toString(),
+                        city: accident.LOCATION_CITY_NAME,
+                        state: accident.LOCATION_STATE_ABBREVIATION,
+                        date: accident.LOCAL_DATETIME
+                    }
+                    fs.appendFile(path + '/meta', JSON.stringify(writeToFile), function (err) {
+                        if (err) {
+                            console.log('error saving metadata file');
+                            callback(err);
+                        } else {
+                            console.log('metadata saved successfully');
+                            callback(null);
+                        }
+                    });
+                }
+            });
+        }
     });
 }
 
