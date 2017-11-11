@@ -13,7 +13,8 @@ const qt = require('quickthumb');
 module.exports = function() {
     const app = express();
 
-    (process.env.NODE_ENV === 'development') ? app.use(morgan('dev')) : app.use(compression());
+    //(process.env.NODE_ENV === 'development') ? app.use(morgan('dev')) : app.use(compression());
+    app.use(morgan('dev'));
     app.use(methodOverride());
     app.use(bodyParser.urlencoded({
         extended: true
