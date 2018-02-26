@@ -17,8 +17,11 @@ module.exports = {
       },
       env_development : {
         NODE_ENV: 'development'
-      } 
-    }
+      },
+      env_maintenance : {
+        NODE_ENV: 'maintenance'
+      }  
+    },
   ],
 
   /**
@@ -41,6 +44,23 @@ module.exports = {
         pm2 start ecosystem.config.js --env production',
       env  : {
         NODE_ENV: 'production'
+      }
+    },
+    maintenance : {
+      user : 'deploy',
+      host : '138.197.20.29',
+      ref  : 'origin/master',
+      repo : 'http://github.com/ultraturtle0/pipescheme.git',
+      path : '/var/www/pipescheme',
+      'pre-setup' : '\
+        npm install -g bower',
+      'post-deploy' : '\
+        npm install; \
+        bower install; \
+        mongod; \
+        pm2 start ecosystem.config.js --env maintenance',
+      env  : {
+        NODE_ENV: 'maintenance'
       }
     }
   }
