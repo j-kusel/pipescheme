@@ -35,8 +35,6 @@ module.exports = {
       ref  : 'origin/master',
       repo : 'http://github.com/ultraturtle0/pipescheme.git',
       path : '/var/www/pipescheme',
-      'pre-setup' : '\
-        npm install -g bower',
       'post-deploy' : '\
         npm install; \
         bower install; \
@@ -52,8 +50,6 @@ module.exports = {
       ref  : 'origin/master',
       repo : 'http://github.com/ultraturtle0/pipescheme.git',
       path : '/var/www/pipescheme',
-      'pre-setup' : '\
-        npm install -g bower',
       'post-deploy' : '\
         npm install; \
         bower install; \

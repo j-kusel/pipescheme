@@ -3,7 +3,7 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 const config = require('./config/config');
 var db, app, passport;
 
-if (process.env.NODE_ENV == 'maintenance') {
+if (process.env.NODE_ENV != 'maintenance') {
 
     const configMongoose = require('./config/mongoose');
     const configExpress = require('./config/express');
