@@ -12,3 +12,5 @@ filePointer.js
 Gulpfile.js
 jan2010-present.zip
 jan2010-present/
+twitterOAuth.js
+facebookOAuth.js

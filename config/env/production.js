@@ -1,11 +1,11 @@
 const media = '/var/www';
-const auth = '/etc/auth';
+const auth = '/var/www/pipescheme_keys';
 
 module.exports = {
 	port: 8001,
 	db: 'mongodb://localhost/accidents',
 	media: media,
-	fileUploads: media + '/pipescheme',
+	fileUploads: media + '/pipescheme/source/media',
     sessionSecret: require(auth + '/sessionSecret.js'),
     facebook: require(auth + '/facebookOAuth.js'),
     twitter: require(auth + '/twitterOAuth.js'),
