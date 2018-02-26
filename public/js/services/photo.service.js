@@ -1,7 +1,7 @@
 angular.module('pipeScheme')
     .factory('PhotoService', ['$resource', function ($resource) {
         var service = {
-            API: $resource('http://pipescheme.com/api/photos', {
+            API: $resource('/api/photos', {
                 _id: "@_id",
                 location: "@location",
                 owner: "@owner"

@@ -1,7 +1,7 @@
 angular.module('pipeScheme')
     .factory('AccidentService', ['$rootScope', '$resource', function($rootScope, $resource) {
         var service = {
-            API: $resource('http://pipescheme.com/api/accidents/:state', {
+            API: $resource('/api/accidents/:state', {
                 state: "@state",
                 fatal: "@fatal"
             }),
