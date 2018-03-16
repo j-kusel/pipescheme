@@ -18,14 +18,11 @@ angular.module('pipeScheme')
         }
 
         function convertGeolocation(coords) {
-            var rPromise = $resource('https://maps.googleapis.com/maps/api/geocode/json', {
-                latlng: "@latlng",
-                key: "@key"
+            var rPromise = $resource('/api/geo', {
+                latlng: "@latlng"
             });
-            var apiKey = 'AIzaSyBj1SDb6bveF-hp9gFJMDrMVPsJdX_DiUg';
             var latlng = coords.latitude.toString() + ',' + coords.longitude.toString();
-            console.log('coords: ' + latlng);
-            return rPromise.get({latlng:latlng, key: apiKey}).$promise;
+            return rPromise.get({latlng:latlng}).$promise;
         }
 
         return { 

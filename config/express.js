@@ -40,6 +40,8 @@ module.exports = function() {
     require('../app/routes/update.server.routes.js')(app);
     require('../app/routes/users.server.routes.js')(app);
     require('../app/routes/photo.server.routes.js')(app);
+    require('../app/routes/geo.server.routes.js')(app);
+
 
     app.use('/', express.static('./public'));
     app.use('/lib', express.static('./node_modules'));

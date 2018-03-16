@@ -1,6 +1,7 @@
 var csv = require('../../config/csv');         // get csv parser
 var fs = require('fs');
 var http = require('http');
+var request = require('request');
 const config = require('../../config/config.js');
 const googleAPI = config.googleAPI;    // get API key
 const PHMSA_FLAGGED_INCIDENTS_URL = 'http://phmsa.dot.gov/staticfiles/PHMSA/DownloadableFiles/Pipeline/PHMSA_Pipeline_Safety_Flagged_Incidents.zip';
@@ -194,3 +195,18 @@ exports.photos = function(req, res, next) {
             res.json(thumbPhotos);
         });
 };
+
+exports.geo = function(req, res, next) {
+    req.query.apiKey = googleAPI;
+    request.get({
+        url: 'https://maps.googleapis.com/maps/api/geocode/json',
+        qs: req.query
+    }, (err, response, body) => {
+        if (body) {
+            res.json(JSON.parse(body));
+        } else {
+            next();
+        }
+    });
+};
+
