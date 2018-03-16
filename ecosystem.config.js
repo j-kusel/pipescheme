@@ -39,7 +39,7 @@ module.exports = {
         npm install; \
         bower install; \
         mongod; \
-        mkdir /var/www/media/pipescheme; \
+        mkdir -p /var/www/media/pipescheme; \
         pm2 start ecosystem.config.js --env production',
       env  : {
         NODE_ENV: 'production'
