@@ -11,6 +11,6 @@ module.exports = {
     twitter: require(auth + '/twitterOAuth.js'),
     googleKey: require(auth + '/googleAPI.js'),
     accidents: '/var/www/accidents/PHMSA_accidents',
-    sslCert: auth + '/sslcert/fullchain.pem',
-    sslKey: auth + '/sslcert/privkey.pem'
+    sslCert: '/etc/letsencrypt/live/pipescheme.com/fullchain.pem',
+    sslKey: '/etc/letsencrypt/live/pipescheme.com/privkey.pem'
 };
