@@ -5,7 +5,7 @@ module.exports = {
 	port: 8001,
 	db: 'mongodb://localhost/accidents',
 	media: media,
-	fileUploads: media + '/pipescheme/source/media',
+	fileUploads: media + '/media/pipescheme',
     sessionSecret: require(auth + '/sessionSecret.js'),
     facebook: require(auth + '/facebookOAuth.js'),
     twitter: require(auth + '/twitterOAuth.js'),
