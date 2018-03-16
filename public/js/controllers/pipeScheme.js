@@ -65,7 +65,14 @@ angular.module('pipeScheme')
             GeoService.getGeolocation().then(function (position) {
                 GeoService.convertGeolocation(position.coords).then(
                     function (data) {
-                        $scope.query.state = $scope.state = data.results[0].address_components[5].short_name;
+                        console.log(data);
+                        var state;
+                        data.results[0].address_components.forEach((comp) => {
+                            if (comp.types.includes('administrative_area_level_1')) state = comp.short_name;
+                        });
+                        $scope.query.state = $scope.state = state;
+                        console.log($scope.query.state);
+                        console.log($scope.state);
                         AccidentService.update();
                     },
                     function (err) {
