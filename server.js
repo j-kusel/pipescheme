@@ -1,5 +1,8 @@
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
+const https = require('https');
+const fs = require('fs');
+
 const config = require('./config/config');
 var db, app, passport;
 
@@ -19,6 +22,15 @@ if (process.env.NODE_ENV != 'maintenance') {
 
 app.listen(config.port);
 module.exports = app;
+
+if (process.env.NODE_ENV == 'production') {
+    var ssl = {
+        key: fs.readFileSync(config.sslKey),
+        cert: fs.readFileSync(config.sslCert)
+    };
+
+    https.createServer(ssl, app).listen(8443);
+}
 
 console.log('Server running at http://localhost:' + config.port + '/');
 

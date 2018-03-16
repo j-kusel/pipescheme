@@ -6,5 +6,7 @@ module.exports = {
     facebook: require('./facebookOAuth.js'),
     twitter: require('./twitterOAuth.js'),
     googleKey: require('./googleAPI'),
-    accidents: 'public/csv/jan2010-present'
+    accidents: 'public/csv/jan2010-present',
+    sslCert: '',
+    sslKey: ''
 };

@@ -10,5 +10,7 @@ module.exports = {
     facebook: require(auth + '/facebookOAuth.js'),
     twitter: require(auth + '/twitterOAuth.js'),
     googleKey: require(auth + '/googleAPI.js'),
-    accidents: '/var/www/accidents/PHMSA_accidents'
+    accidents: '/var/www/accidents/PHMSA_accidents',
+    sslCert: auth + '/sslcert/fullchain.pem',
+    sslKey: auth + '/sslcert/privkey.pem'
 };
