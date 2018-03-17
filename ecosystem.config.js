@@ -38,7 +38,7 @@ module.exports = {
       'post-deploy' : '\
         npm install; \
         bower install; \
-        mongod; \
+        mongod --fork --logpath /var/log/mongod.log; \
         mkdir -p /var/www/media/pipescheme; \
         pm2 start ecosystem.config.js --env production',
       env  : {
