@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":2,"key":{"_id":1},"name":"_id_","ns":"accidents.accidents"},{"v":2,"unique":true,"key":{"REPORT_NUMBER":1.0,"SUPPLEMENTAL_NUMBER":1.0},"name":"REPORT_NUMBER_1_SUPPLEMENTAL_NUMBER_1","ns":"accidents.accidents"}]}
