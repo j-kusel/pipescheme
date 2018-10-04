@@ -33,8 +33,8 @@ angular.module('pipeScheme')
             });
 
             $scope.tabs = {
-                gallery: true,
-                provider: false
+                gallery: false,
+                provider: true
             };
 
             $scope.query = {
